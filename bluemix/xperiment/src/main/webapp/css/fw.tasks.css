@@ -1,0 +1,86 @@
+/*
+ * Module feature styles
+*/
+.modBodyCenter {
+	min-height: 40em;
+	max-height: 40em;
+	/*
+	min-width: 300px;
+	max-width: 290px;
+	*/
+	overflow-y: auto;
+	overflow-x: auto;
+	/* background-color: grey; */
+	position: relative;
+	display: box;
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
+}
+
+.modBodyFooter {
+	min-height: 4em;
+	max-height: 4em;
+	/*
+	min-height: 100px;
+	min-width: 300px;
+	max-width: 290px;
+	*/
+	overflow-y: auto;
+	overflow-x: auto;
+	border-radius: 0px 0px 5px 5px;
+	bottom: 0em;
+	position: relative;
+	display: box;
+	margin: 5px;
+	padding: 5px;
+}
+
+.container{
+    display:table;
+    width:100%;
+    border-collapse: collapse;
+    }
+    
+.heading{
+     font-weight: bold;
+     display:table-row;
+     background-color:#1e90ff;
+     text-align: center;
+     line-height: 25px;
+     font-size: 14px;
+     /* font-family:georgia; */
+     color:#fff;
+    width:100%;
+}
+
+.heading div {
+    font-size: 18px;
+}
+
+.table-row{  
+     display:table-row;
+     text-align: center;
+      width:100%;
+}
+.col{
+    display:table-cell;
+    border: 1px solid #CCC;
+}
+
+.col1{
+	width:10%;
+}
+.col2{
+	width:50%;
+}
+.col3{
+	width:10%;
+}
+.col4{
+	width:15%;
+}
+.col5{
+	width:15%;
+}
+

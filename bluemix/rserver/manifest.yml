@@ -1,0 +1,6 @@
+applications:
+- disk_quota: 1024M
+  host: rserver
+  name: rserver
+  instances: 1
+  memory: 1024M

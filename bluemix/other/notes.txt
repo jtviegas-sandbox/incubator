@@ -1,0 +1,58 @@
+Bluemix is based on Cloudfoundry
+1st - In order to deploy any solution to bluemix we must define our application and its buildpack.
+2nd - Then we can leverage all the services existent in the bluemix environment and bind our application to whichever we find useful
+3rd - we can scale our application, for our application will be running in a container, which can be replicated to many instances
+
+The buildpack is the "platform" part of our application, there are various web server buildpacks, with different technology stacks but in this case we wanted to have a small server where we could dump some data and then kick off some stats processing with R. 
+We looked into the R offerings in bluemix and we only found solutions that provided access to R in as a virtual desktop. 
+We also looked in the cloudfoundry community where there's a lot of examples of custom buildpacks, check github (https://github.com/cloudfoundry & https://github.com/cloudfoundry-community), from which we can extend and create our own, but almost all scripts where coded in ruby and are already very complex, and there's no R buildpack.
+Eventually we found another repository with an R buildpack, but we couldn't make it work on bluemix.
+We are going to describe the process of creation of a custom buildpack, and we'll use it to create an application where we bind to a mongodb service.
+Our idea maybe is not fit for a production scenario, but it's helpful for some research and testing, 
+ and this process can be replicated to create any other kind of buildpack.
+
+So to define a buildpack all we have to do is create three scripts: Detect, Compile and Release.
+We bundle it in a bin folder and we can keep it on github and afterwards require it from there.
+This buildpack definition will draw a relation with all the applications that leverage it, and it should provide some guidelines, so in our case, every application should provide a sartR.sh bash script. As a rule they can coded in ruby but we can use bash.
+The process is simple, when we want to load an app into bluemix the cloud controller will run the detect script, the detect script will be invoked in every available buildpack and it should identify its associated buildpack and return 0. So in our case:
+ 
+	 if [ -f $1/startR.sh ]; then
+	  echo "R" && exit 0
+	else
+	  echo "no" && exit 1
+	fi
+
+After the buildpack is selected, its compile script will be invoked in a compilation container, this script receives a parameter with a build folder location. In that folder it should setup its execution environment. 
+<image>
+At this stage we can download binaries, or we can retrieve and compile sources, we should provide all required assets to run this "platform". Binaries and libraries, should be stored here as they will be found in the execution environment later on. 
+ 
+VENDOR_BUNDLE=vendor.tar.bz2
+JAVA_BUNDLE=java.tar.bz2
+JAVA_URI="https://github.com/jtviegas/sink-javabin/raw/master"
+VENDOR_URI="https://github.com/jtviegas/sink-vendorbin2/raw/master"
+BUILD_DIR=$1
+CACHE_DIR=$2
+DEPLOY_DIR=/app
+
+if [[ ! -d $CACHE_DIR ]]; then
+	mkdir -p $CACHE_DIR
+fi
+cd $CACHE_DIR
+echo "Downloading and unpacking bundles to cache dir"
+if [[ ! -f $VENDOR_BUNDLE ]]; then
+	wget --no-check-certificate $VENDOR_URI/$VENDOR_BUNDLE
+fi
+if [[ ! -f $JAVA_BUNDLE ]]; then
+	wget --no-check-certificate $JAVA_URI/$JAVA_BUNDLE
+fi
+
+cd $BUILD_DIR
+tar xjpvf $CACHE_DIR/$JAVA_BUNDLE &> /dev/null
+tar xjpvf $CACHE_DIR/$VENDOR_BUNDLE &> /dev/null
+
+chmod 0755 startR.sh
+echo "R successfully installed"
+
+after the compilation, this build folder will be archived as a tarball called "droplet", and this droplet can then be run in one, or various running containers:
+
+<image>

@@ -1,0 +1,125 @@
+/*
+ * Shell styles
+*/
+
+#fw {
+	position: absolute;
+	display: box;
+	top: 8px;
+	left: 8px;
+	bottom: 8px;
+	right: 8px;
+	/* min-height: 500px;
+	min-width: 500px; */
+	overflow: hidden;
+		background-image: null;
+	background-color: black;
+	background-position: center;
+	background-clip: content-box;
+	border-radius: 8px 8px 8px 8px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+		overflow-y: auto;
+	overflow-x: auto;
+}
+.fw-footer {
+	background-color: black;
+	min-height: 4em;
+	max-height: 4em;
+	text-align: center;
+	filter: alpha(opacity = 95);
+	opacity: .9;
+}
+
+.page-end-section {
+  	max-height: 1em;
+  	height: 1em;
+    //float: none;
+    min-width: 100%;
+}
+
+.module {
+	/*
+	float: right;
+	*/
+	background-color: brown;
+	filter: alpha(opacity = 95);
+	opacity: .9;
+	border-radius: 5px 5px 5px 5px;
+	border: 0;
+	margin: 5px;
+	padding: 5px;
+}
+
+
+.moduleHeader {
+	min-height: 2em;
+	max-height: 2em;
+	/* min-width: 50em;
+	max-width: 50em; */
+	border-radius: 5px 5px 5px 5px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.moduleBody {
+	/*
+	max-height: 60em;
+	min-height: 60em;
+	*/
+	/* min-width: 50em;
+	max-width: 50em; */
+	border-radius: 5px 5px 5px 5px;
+	overflow-y: auto;
+	overflow-x: auto;
+
+}
+
+@media screen and (min-width: 400px)  {
+	.page-end-section {
+		max-height: 1em;
+		height: 2em;
+	}
+
+	#fw {
+	background-image: url('../img/body.png');
+
+	}
+}
+@media screen and (min-width: 600px)  {
+
+}
+@media screen and (min-width: 1000px) {
+	.page-end-section {
+		max-height: 2em;
+		/*
+		height: 2em;
+		*/
+
+	}
+}
+@media screen and (min-width: 1400px) {
+	.moduleHeader {
+		min-height: 3em;
+		max-height: 3em;
+		/* min-width: 50em;
+		max-width: 50em; */
+	}
+	.moduleBody {
+		/*
+		max-height: 40em;
+		min-height: 40em;
+		
+		min-width: 50em;
+		max-width: 50em;
+		*/
+
+	}
+}
+
+
+
+
+
+

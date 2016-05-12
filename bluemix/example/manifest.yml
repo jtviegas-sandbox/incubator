@@ -1,0 +1,11 @@
+---
+applications:
+- name: bluemixexample
+  buildpack: sdk-for-nodejs
+  memory: 256M
+  instances: 1
+  command: node dist/backend/app.js
+  path: "."
+  disk_quota: 1024M
+  env:
+    CONTEXT: bluemix

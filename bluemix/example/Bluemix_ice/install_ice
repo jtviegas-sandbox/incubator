@@ -1,0 +1,79 @@
+#!/bin/bash
+
+if [ $UID -ne 0 ]; then
+    echo "Superuser privileges are required to run this script."
+    echo "e.g. \"sudo $0\""
+    exit 1
+fi
+
+#install docker
+if ! docker_loc="$(type -p "docker")" || [ -z "/usr/bin/docker" ]; then
+	echo "Docker cli was not found. Install it from https://docs.docker.com/installation/"
+	echo ""
+else
+	echo "Docker cli is already installed."
+	echo ""
+fi
+
+# Check minimum Python version. Must be 2.7.x
+pythonversion=`python -V 2>&1 | grep "Python"`
+pythonInstalled=0
+if [ -n "$pythonversion" ]; then
+	firstversionnumber=`echo "$pythonversion" | sed 's/^[^0-9]*\([0-9][0-9]*\)\..*$/\1/'`
+	secondversionnumber=`echo "$pythonversion" | sed 's/^[^0-9]*[0-9][0-9]*\.\([0-9][0-9]*\).*$/\1/'`
+	thirdversionnumber=`echo "$pythonversion" | sed 's/^[^0-9]*[0-9][0-9]*\.[0-9][0-9]*\.\([0-9][0-9]*\).*$/\1/'`
+	echo "Python version found : $firstversionnumber.$secondversionnumber.$thirdversionnumber"
+	if [ $firstversionnumber -eq 2 -a $secondversionnumber -eq 7 ]; then
+	    #Python 2.7.x
+		pythonInstalled=1
+	fi
+fi
+
+if [ $pythonInstalled -eq 0 ]; then
+	echo "Installing Python ..."
+	echo ""
+	if ! yum_loc="$(type -p "yum")" || [ -z "/usr/bin/yum" ]; then
+			echo "Python is being installed by apt-get."
+			apt-get install -y python-pip
+			
+			if [[ $? -eq 0 ]]; then
+				echo "Python is installed."
+			else
+				echo "An error occurred when installing Python. Install it from https://www.python.org/downloads/ before you install the ice cli."
+				exit 1
+			fi
+	else
+			#install python
+			echo "Python is being installed by yum."
+			yum install -y python-pip
+		
+			if [[ $? -eq 0 ]]; then
+				echo "Python is installed."
+			else
+				echo "An error occurred when installing Python. Install it from https://www.python.org/downloads/ before you install the ice cli."
+				exit 1
+			fi
+	fi
+fi
+
+echo "Copying files ..."
+
+if [ ! -d "/usr/local/Bluemix" ]; then 
+	mkdir /usr/local/Bluemix
+fi
+
+if [ ! -d "/usr/local/Bluemix/bin" ]; then 
+	mkdir /usr/local/Bluemix/bin
+fi
+
+cp -R ice /usr/local/Bluemix
+
+chown -R root:root /usr/local/Bluemix
+chmod -R 755 /usr/local/Bluemix
+
+python /usr/local/Bluemix/ice/get-pip.py
+python /usr/local/Bluemix/ice/ez_setup.py
+pip install /usr/local/Bluemix/ice/icecli.zip
+
+echo "The ice cli installed successfully. To get started, enter ice help."
+
