@@ -1,0 +1,5 @@
+startall.sh
+	start consul
+
+check consul services at:
+http://172.17.0.2:8500/ui/#/dc1/services

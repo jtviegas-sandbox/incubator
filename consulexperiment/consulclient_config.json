@@ -1,0 +1,9 @@
+{
+	"server": false
+	, "log_level": "DEBUG"
+	, "node_name": "consulclient"
+	, "data_dir": "/var/consul"
+	, "datacenter": "datacenter1"
+	, "encrypt": "hzKYylB5aeQl+WgFiS71fQ=="
+	, "ui_dir": "/opt/consul/ui"
+}

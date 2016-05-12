@@ -1,0 +1,25 @@
+FROM node:5.4.1-wheezy
+RUN apt-get -y --force-yes --fix-missing update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install curl nmap dnsutils git sed bc vim zip unzip openssh-server openssh-client
+
+WORKDIR /tmp
+
+RUN mkdir /var/consul
+RUN mkdir -p /opt/consul/etc
+RUN mkdir -p /opt/consul/bin
+RUN mkdir -p /opt/service
+
+RUN wget https://releases.hashicorp.com/consul/0.6.1/consul_0.6.1_linux_amd64.zip -O consul.zip
+RUN unzip consul.zip -d /opt/consul/bin
+RUN rm consul.zip
+
+ADD ./consulservice_config.json /opt/consul/etc/
+ADD ./consulservice_startup.sh /opt/consul/bin/
+ADD ./service.js /opt/service/
+ADD ./package.json /opt/service/
+
+WORKDIR /opt/service
+RUN npm update
+RUN npm install -d --production 
+
+CMD [ "/bin/bash", "-c", "/opt/consul/bin/consulservice_startup.sh ${BOOTSTRAP_IP} ${SERVER_IP}" ]

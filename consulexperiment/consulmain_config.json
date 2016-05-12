@@ -1,0 +1,12 @@
+{
+	"server": true
+	, "dns_config": {
+		"allow_stale": false
+		}
+	, "node_name": "consulmain"
+	, "log_level": "DEBUG"
+	, "data_dir": "/var/consul"
+	, "datacenter": "datacenter1"
+	, "bootstrap": true
+	, "encrypt": "hzKYylB5aeQl+WgFiS71fQ=="
+}

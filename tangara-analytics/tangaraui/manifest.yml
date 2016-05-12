@@ -1,0 +1,13 @@
+---
+applications:
+- name: tangara
+  buildpack: sdk-for-nodejs
+  memory: 512M
+  instances: 1
+  command: node dist/backend/app.js
+  services:
+    - mongo
+  path: "."
+  disk_quota: 1024M
+  env:
+    CONTEXT: bluemix

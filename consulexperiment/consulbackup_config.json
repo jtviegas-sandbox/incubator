@@ -1,0 +1,12 @@
+{
+	"server": true
+	, "dns_config": {
+		"allow_stale": false
+		}
+	, "log_level": "DEBUG"
+	, "data_dir": "/var/consul"
+	, "node_name": "consulbackup"
+	, "datacenter": "datacenter1"
+	, "bootstrap": false
+	, "encrypt": "hzKYylB5aeQl+WgFiS71fQ=="
+}

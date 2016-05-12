@@ -1,0 +1,23 @@
+FROM ubuntu:14.04
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes --fix-missing update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install curl nmap dnsutils git sed bc vim zip unzip openssh-server openssh-client
+
+WORKDIR /tmp
+
+RUN mkdir /var/consul
+RUN mkdir -p /opt/consul/ui
+RUN mkdir -p /opt/consul/etc
+RUN mkdir -p /opt/consul/bin
+
+RUN wget https://releases.hashicorp.com/consul/0.6.1/consul_0.6.1_web_ui.zip -O consul-ui.zip
+RUN wget https://releases.hashicorp.com/consul/0.6.1/consul_0.6.1_linux_amd64.zip -O consul.zip
+RUN unzip consul.zip -d /opt/consul/bin
+RUN rm consul.zip
+RUN unzip consul-ui.zip -d /opt/consul/ui
+RUN rm consul-ui.zip
+
+ADD ./consulclient_config.json /opt/consul/etc/
+ADD ./consulclient_startup.sh /opt/consul/bin/
+
+
+CMD [ "/bin/bash", "-c", "/opt/consul/bin/consulclient_startup.sh ${BOOTSTRAP_IP} ${SERVER_IP}" ]

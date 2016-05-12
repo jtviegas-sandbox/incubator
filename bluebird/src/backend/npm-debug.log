@@ -1,0 +1,118 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g', 'util' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.37
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'util', null ]
+6 verbose cache add name=undefined spec="util" args=["util",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'util',
+7 verbose parsed url   path: 'util',
+7 verbose parsed url   href: 'util' }
+8 silly lockFile 281811fa-util util
+9 verbose lock util /home/joaovieg/.npm/281811fa-util.lock
+10 silly lockFile 281811fa-util util
+11 silly lockFile 281811fa-util util
+12 verbose addNamed [ 'util', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile e1dbe810-util util@
+15 verbose lock util@ /home/joaovieg/.npm/e1dbe810-util.lock
+16 silly addNameRange { name: 'util', range: '*', hasData: false }
+17 verbose request where is /util
+18 verbose request registry http://registry.npmjs.org/
+19 verbose request id 3e9602554f925075
+20 verbose url raw /util
+21 verbose url resolving [ 'http://registry.npmjs.org/', './util' ]
+22 verbose url resolved http://registry.npmjs.org/util
+23 verbose request where is http://registry.npmjs.org/util
+24 info trying registry request attempt 1 at 16:23:27
+25 verbose etag "4LFDFLZFB93FXSNDQTXOZFD8A"
+26 http GET http://registry.npmjs.org/util
+27 http 304 http://registry.npmjs.org/util
+28 silly registry.get cb [ 304,
+28 silly registry.get   { date: 'Sun, 27 Dec 2015 16:23:27 GMT',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     'cache-control': 'max-age=300',
+28 silly registry.get     etag: '"4LFDFLZFB93FXSNDQTXOZFD8A"',
+28 silly registry.get     age: '150',
+28 silly registry.get     connection: 'keep-alive',
+28 silly registry.get     'x-served-by': 'cache-lcy1122-LCY',
+28 silly registry.get     'x-cache': 'HIT',
+28 silly registry.get     'x-cache-hits': '4',
+28 silly registry.get     'x-timer': 'S1451233407.926281,VS0,VE0',
+28 silly registry.get     vary: 'Accept' } ]
+29 verbose etag http://registry.npmjs.org/util from cache
+30 silly addNameRange number 2 { name: 'util', range: '*', hasData: true }
+31 silly addNameRange versions [ 'util', [ '0.4.9', '0.10.0', '0.10.1', '0.10.2', '0.10.3' ] ]
+32 verbose addNamed [ 'util', '0.10.3' ]
+33 verbose addNamed [ '0.10.3', '0.10.3' ]
+34 silly lockFile 16434265-util-0-10-3 util@0.10.3
+35 verbose lock util@0.10.3 /home/joaovieg/.npm/16434265-util-0-10-3.lock
+36 silly lockFile 16434265-util-0-10-3 util@0.10.3
+37 silly lockFile 16434265-util-0-10-3 util@0.10.3
+38 silly lockFile e1dbe810-util util@
+39 silly lockFile e1dbe810-util util@
+40 silly resolved [ { author: { name: 'Joyent', url: 'http://www.joyent.com' },
+40 silly resolved     name: 'util',
+40 silly resolved     description: 'Node.JS util module',
+40 silly resolved     keywords: [ 'util' ],
+40 silly resolved     version: '0.10.3',
+40 silly resolved     homepage: 'https://github.com/defunctzombie/node-util',
+40 silly resolved     repository: { type: 'git', url: 'git://github.com/defunctzombie/node-util' },
+40 silly resolved     main: './util.js',
+40 silly resolved     scripts: { test: 'node test/node/*.js && zuul test/browser/*.js' },
+40 silly resolved     dependencies: { inherits: '2.0.1' },
+40 silly resolved     license: 'MIT',
+40 silly resolved     devDependencies: { zuul: '~1.0.9' },
+40 silly resolved     browser: { './support/isBuffer.js': './support/isBufferBrowser.js' },
+40 silly resolved     readme: '# util\n\n[![Build Status](https://travis-ci.org/defunctzombie/node-util.png?branch=master)](https://travis-ci.org/defunctzombie/node-util)\n\nnode.js [util](http://nodejs.org/api/util.html) module as a module\n\n## install via [npm](npmjs.org)\n\n```shell\nnpm install util\n```\n\n## browser support\n\nThis module also works in modern browsers. If you need legacy browser support you will need to polyfill ES5 features.\n',
+40 silly resolved     readmeFilename: 'README.md',
+40 silly resolved     bugs: { url: 'https://github.com/defunctzombie/node-util/issues' },
+40 silly resolved     _id: 'util@0.10.3',
+40 silly resolved     _from: 'util@' } ]
+41 info install util@0.10.3 into /usr/lib
+42 info installOne util@0.10.3
+43 verbose lib/node_modules/util unbuild
+44 verbose tar unpack /home/joaovieg/.npm/util/0.10.3/package.tgz
+45 silly lockFile 03510de0-tar-usr-lib-node-modules-util tar:///usr/lib/node_modules/util
+46 verbose lock tar:///usr/lib/node_modules/util /home/joaovieg/.npm/03510de0-tar-usr-lib-node-modules-util.lock
+47 silly lockFile 2a99100c-vieg-npm-util-0-10-3-package-tgz tar:///home/joaovieg/.npm/util/0.10.3/package.tgz
+48 verbose lock tar:///home/joaovieg/.npm/util/0.10.3/package.tgz /home/joaovieg/.npm/2a99100c-vieg-npm-util-0-10-3-package-tgz.lock
+49 silly gunzTarPerm modes [ '755', '644' ]
+50 error Error: EACCES, mkdir '/usr/lib/node_modules/util'
+50 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/util']
+50 error   errno: 3,
+50 error   code: 'EACCES',
+50 error   path: '/usr/lib/node_modules/util',
+50 error   fstream_type: 'Directory',
+50 error   fstream_path: '/usr/lib/node_modules/util',
+50 error   fstream_class: 'DirWriter',
+50 error   fstream_stack:
+50 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+50 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+50 error      'Object.oncomplete (fs.js:108:15)' ] }
+51 error Please try running this command again as root/Administrator.
+52 error System Linux 3.19.0-41-generic
+53 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "util"
+54 error cwd /home/joaovieg/workspace/github/incubator/bluebird/src/backend
+55 error node -v v0.10.37
+56 error npm -v 1.4.28
+57 error path /usr/lib/node_modules/util
+58 error fstream_path /usr/lib/node_modules/util
+59 error fstream_type Directory
+60 error fstream_class DirWriter
+61 error code EACCES
+62 error errno 3
+63 error stack Error: EACCES, mkdir '/usr/lib/node_modules/util'
+64 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+64 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+64 error fstream_stack Object.oncomplete (fs.js:108:15)
+65 verbose exit [ 3, true ]

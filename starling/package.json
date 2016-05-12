@@ -1,0 +1,39 @@
+{
+  "name": "starling",
+  "version": "1.0.0",
+  "description": "wonderful bird watching over studies and experiments",
+  "main": "dist/backend/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node dist/backend/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jtviegas/starling.git"
+  },
+  "engines": {
+     "node": "0.10.28"
+  },
+  "author": "jtv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jtviegas/starling/issues"
+  },
+  "homepage": "https://github.com/jtviegas/starling",
+  "dependencies": {
+    "body-parser": "^1.12.4",
+    "express": "^4.12.4",
+    "multer": "^0.1.8"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-less": "~1.0.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-clean": "^0.6.0"
+  }
+}

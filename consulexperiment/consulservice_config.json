@@ -1,0 +1,17 @@
+{
+	"server": false
+	, "log_level": "DEBUG"
+	, "node_name": "consulservice"
+	, "data_dir": "/var/consul"
+	, "datacenter": "datacenter1"
+	, "encrypt": "hzKYylB5aeQl+WgFiS71fQ=="
+	, "service": {
+        	"name": "consulservice",
+        	"port": 80,
+        	"tags": ["node", "consul", "service"],
+        	"check": {
+            		"script": "curl localhost:8080 > /dev/null 2>&1",
+            		"interval": "10s"
+        	}
+    	}
+}

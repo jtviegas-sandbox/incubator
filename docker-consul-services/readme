@@ -1,0 +1,57 @@
+
+...start the resolvable container and 2 dockerized app containers:
+	$ ./start.sh
+
+...check containers running:
+	$ docker ps
+	CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+	d8a973eaf8b3        app_img:latest      "node /opt/app/app.js"   4 seconds ago       Up 3 seconds        0.0.0.0:8081->8080/tcp   app2
+	93cd74c0bb4e        app_img:latest      "node /opt/app/app.js"   4 seconds ago       Up 3 seconds        0.0.0.0:8080->8080/tcp   app
+	b8e3da6077c3        mgood/resolvable    "/bin/resolvable"        11 seconds ago      Up 10 seconds                                resolvable
+
+
+...so now we can try to find app2 from app:
+	$ docker exec app dig app2.docker
+
+	; <<>> DiG 9.9.5-3ubuntu0.8-Ubuntu <<>> app2.docker
+	;; global options: +cmd
+	;; Got answer:
+	;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 63479
+	;; flags: qr rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+	;; WARNING: recursion requested but not available
+
+	;; QUESTION SECTION:
+	;app2.docker.			IN	A
+
+	;; ANSWER SECTION:
+	app2.docker.		0	IN	A	172.17.0.4
+
+	;; Query time: 0 msec
+	;; SERVER: 172.17.0.2#53(172.17.0.2)
+	;; WHEN: Sun Apr 24 10:17:13 UTC 2016
+	;; MSG SIZE  rcvd: 56
+
+... and the other way around:
+
+	$ docker exec app2 dig app.docker
+
+	; <<>> DiG 9.9.5-3ubuntu0.8-Ubuntu <<>> app.docker
+	;; global options: +cmd
+	;; Got answer:
+	;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 15036
+	;; flags: qr rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+	;; WARNING: recursion requested but not available
+
+	;; QUESTION SECTION:
+	;app.docker.			IN	A
+
+	;; ANSWER SECTION:
+	app.docker.		0	IN	A	172.17.0.3
+
+	;; Query time: 0 msec
+	;; SERVER: 172.17.0.2#53(172.17.0.2)
+	;; WHEN: Sun Apr 24 10:19:10 UTC 2016
+	;; MSG SIZE  rcvd: 54
+
+...it just works!
+

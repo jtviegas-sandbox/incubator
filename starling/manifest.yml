@@ -1,0 +1,13 @@
+---
+applications:
+- name: starling
+  buildpack: sdk-for-nodejs
+  memory: 512M
+  instances: 1
+  command: node dist/backend/app.js
+  path: "."
+  disk_quota: 1024M
+  services:
+    - mongo
+  env:
+    CONTEXT: bluemix
