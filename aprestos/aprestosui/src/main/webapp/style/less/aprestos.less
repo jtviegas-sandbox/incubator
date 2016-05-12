@@ -1,0 +1,381 @@
+// Core variables and mixins
+// aprestos customization
+@import "aprestos_variables.less";
+
+@import "mixins.less";
+
+// Reset
+@import "normalize.less";
+@import "print.less";
+
+// Core CSS
+@import "scaffolding.less";
+@import "type.less";
+@import "code.less";
+@import "grid.less";
+@import "tables.less";
+@import "forms.less";
+@import "buttons.less";
+
+// Components
+@import "component-animations.less";
+@import "glyphicons.less";
+@import "dropdowns.less";
+@import "button-groups.less";
+@import "input-groups.less";
+@import "navs.less";
+@import "navbar.less";
+@import "breadcrumbs.less";
+@import "pagination.less";
+@import "pager.less";
+@import "labels.less";
+@import "badges.less";
+@import "jumbotron.less";
+@import "thumbnails.less";
+@import "alerts.less";
+@import "progress-bars.less";
+@import "media.less";
+@import "list-group.less";
+@import "panels.less";
+@import "wells.less";
+@import "close.less";
+
+// Components w/ JavaScript
+@import "modals.less";
+@import "tooltip.less";
+@import "popovers.less";
+@import "carousel.less";
+
+// Utility classes
+@import "utilities.less";
+@import "responsive-utilities.less";
+
+// aprestos customization
+.navbar-aprestos {
+    position: absolute;
+    font-size: @font-size-medium;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 20px;
+    margin-bottom: -90px;
+    color: @aprestos-third-color;
+    //background-color:@gray;
+    background-color:transparent;
+    //opacity : 0.7;
+    a {
+        background-color:transparent;
+        color: @aprestos-third-color;
+        //&:focus,
+        &:hover {
+            background-color:transparent;
+            text-decoration: none;
+            color: @aprestos-first-color;//@navbar-default-link-color;
+        } 
+    }     
+}
+
+.navbar-aprestos-relative {
+    position: relative;
+    font-size: @font-size-medium;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 20px;
+     margin-bottom: 0px;
+    color: @aprestos-second-color;
+    //background-color:@gray;
+    background-color:transparent;
+    //opacity : 0.7;
+    a {
+        background-color:@aprestos-second-color;
+        color: @aprestos-second-color;
+        opacity : 0.7;
+        //&:focus,
+        &:hover,&:focus {
+            background-color:@aprestos-second-color;
+            opacity : 0.7;
+            text-decoration: none;
+            color: @aprestos-first-color;//@navbar-default-link-color;
+        } 
+    }     
+}
+.dropdown-menu-aprestos-singledout {
+    > li > a {
+        //line-height: 1.6em;
+        &:hover,&:focus {
+            background-color:@aprestos-second-color;
+            opacity : 0.7;
+            color: @aprestos-first-color;//@navbar-default-link-color;
+        }
+    }
+}
+.navbar-aprestos-second {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 20px;
+    margin-bottom: -90px;
+    //background-color:@gray;
+    opacity : 0.3;
+    color: @aprestos-third-color;
+    a {
+      color: @navbar-default-link-hover-color;
+        //&:focus,
+        &:hover {
+            text-decoration: none;
+            color: @aprestos-first-color;//@navbar-default-link-color;
+        } 
+    }     
+}
+.active a {
+      color: @aprestos-first-color;
+}
+
+.navbar-nav-aprestos {
+    float: right;
+    background-color:transparent;
+    > li > a {
+        text-decoration: none;
+        background-color: transparent;
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        background-color: transparent;
+        }
+    }
+}
+
+.navbar-header-aprestos {
+    color: @aprestos-third-color;
+    line-height: 0.5em;
+}
+
+.navbar-header-aprestos-singledout {
+    color: @aprestos-second-color;
+    
+    line-height: 0.5em;
+}
+
+.navbar-toggle-aprestos {
+  //background-color: @aprestos-first-color;//@navbar-inverse-toggle-hover-bg;
+    border-color: @aprestos-first-color;//@gray-light;
+    &:hover {
+          background-color: @aprestos-first-color;
+        }
+}
+
+.icon-bar-aprestos {
+  background-color: @gray;
+}
+
+.dropdown-aprestos {
+
+}
+.dropdown-menu-aprestos {
+    border: 1px solid transparent;//#ccc;
+    //border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    color: @aprestos-third-color;
+    > li > a {
+        line-height: 1.6em;
+        color: @aprestos-third-color;
+        //text-shadow: 0 0 0.3px @navbar-default-link-color;
+        //&:focus,
+        &:hover {
+            //text-decoration: none;
+            color: @aprestos-first-color;//@navbar-default-link-color;
+        }
+    }
+}
+
+
+.social-icons { 
+    font-family: 'socialvector', Arial, sans-serif;
+    font-size: @font-size-social-icon;
+    > a {
+        color: @navbar-default-link-hover-color;
+        text-shadow: 0 0 0.3px @navbar-default-link-color;
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            text-shadow: 0 0 0.3px @aprestos-first-color;
+          color: @aprestos-first-color;//@navbar-default-link-color;
+        }
+    }
+}
+
+.footer-aprestos {
+    margin-top: 5em;
+    font-size: @font-size-medium;
+}
+.address-aprestos {
+    font-size: @font-size-medium;
+    line-height: 1.5em;
+}
+
+.h1-aprestos {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: left;
+    //font-size: @font-size-large;
+}
+
+.h6-aprestos {
+    font-size: @font-size-medium;
+    margin-top: @font-size-medium;
+    margin-bottom: 0;
+    text-align: left;
+    //font-size: @font-size-large;
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+
+.dropdown .dropdown-menu-aprestos {
+    @media (min-width: @screen-md-min) {
+     display: none;
+    }
+   
+}
+
+.dropdown:hover .dropdown-menu-aprestos {
+    @media (min-width: @screen-md-min) {
+     display: block;
+    }
+}
+
+.emptybox {
+
+    @media (max-width: (@screen-xs-min - 1)) {
+       min-height: @emptybox-heigth-xs;
+       display: block;
+        padding-top: 2em;
+    };
+    @media (min-width: @screen-xs-min) {
+       min-height: @emptybox-heigth-xs;
+       display: block;
+        padding-top: 2em;
+    };
+    @media (min-width: @screen-sm-min) {
+       min-height: @emptybox-heigth-sm;
+       display: block;
+       padding-top: 2em;
+    };
+    @media (min-height: @screen-md-min) {
+     min-height: @emptybox-heigth-md;
+     display: block;
+     padding-top: 3em;
+    };
+    @media (min-width: @screen-lg-min) {
+     min-height: @emptybox-heigth-lg;
+     display: block;
+     padding-top: 4em;
+    };
+
+}
+
+
+.btn-carroussel-aprestos {
+    background-color:transparent;
+    border-color:transparent;
+    
+    &:hover {
+                background-color:transparent;
+                border-color:transparent;
+            }
+    /*
+    color: @aprestos-third-color;
+    //opacity : 0.8;
+    .active {
+        background-color:transparent;
+                border-color:transparent;
+                color: @aprestos-first-color;
+        a {
+             color: @aprestos-third-color;
+            background-color:transparent;
+            border-color:transparent;
+            &:hover {
+                background-color:transparent;
+                border-color:transparent;
+                color: @aprestos-first-color;
+            }
+        }
+    }
+    */
+}
+
+/*
+
+.btn-carroussel-aprestos.active{
+    color: @aprestos-third-color;
+            background-color:transparent;
+            border-color:transparent;
+            &:hover {
+                background-color:transparent;
+                border-color:transparent;
+                color: @aprestos-first-color;
+            }
+}
+*/
+.small-carousel-aprestos {
+    margin-top: 10px;
+}
+.carousel-inner-aprestos {
+    > .item > img {
+        min-width: 100%;
+    }
+}
+
+.collapse-aprestos {
+    //background-color:#000;
+    //border:1px solid black;
+    //opacity:0.4;
+    //filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+
+.aprestos {
+        background-color:transparent;  
+         a {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+}
+.carousel-caption-aprestos {
+    background-color:transparent;
+    font-size: @font-size-large;
+        > h1 {
+            text-align: left;
+            vertical-align: bottom;
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+            }
+        > p {
+            text-align: left;
+            }
+        > hr {
+            margin-bottom: 0.5em;
+            margin-top: 0.5em;
+        }
+}
+
+.jumbotron-text-aprestos {
+    a {
+        background-color:transparent;
+        color: @aprestos-third-color;
+        //&:focus,
+        &:hover {
+            background-color:transparent;
+            text-decoration: none;
+            color: @aprestos-first-color;//@navbar-default-link-color;
+        } 
+    }     
+}
