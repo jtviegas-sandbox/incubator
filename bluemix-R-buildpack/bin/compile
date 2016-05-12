@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+# fail fast
+set -e
+_pwd=`pwd`
+
+#SYS_UNAME=`uname -a`
+#echo $SYS_UNAME
+
+VENDOR_BUNDLE=vendor.tar.bz2
+JAVA_BUNDLE=java.tar.bz2
+JAVA_URI="https://github.com/jtviegas/sink-javabin/raw/master"
+VENDOR_URI="https://github.com/jtviegas/sink-vendorbin2/raw/master"
+BUILD_DIR=$1
+CACHE_DIR=$2
+DEPLOY_DIR=/app
+
+if [[ ! -d $CACHE_DIR ]]; then
+	mkdir -p $CACHE_DIR
+fi
+cd $CACHE_DIR
+
+echo "Downloading and unpacking bundles to cache dir"
+if [[ ! -f $VENDOR_BUNDLE ]]; then
+	wget --no-check-certificate $VENDOR_URI/$VENDOR_BUNDLE
+fi
+if [[ ! -f $JAVA_BUNDLE ]]; then
+	wget --no-check-certificate $JAVA_URI/$JAVA_BUNDLE
+fi
+
+cd $BUILD_DIR
+tar xjpvf $CACHE_DIR/$JAVA_BUNDLE &> /dev/null
+tar xjpvf $CACHE_DIR/$VENDOR_BUNDLE &> /dev/null
+
+chmod 0755 startR.sh
+echo "R successfully installed"
+

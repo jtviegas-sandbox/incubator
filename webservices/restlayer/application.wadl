@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02"><doc
+        jersey:generatedBy="Jersey: 1.17 01/17/2013 03:31 PM"
+        xmlns:jersey="http://jersey.java.net/"/><doc xml:lang="en"
+            title="A message in the WADL"><![CDATA[This is added to the start of the generated application.wadl]]></doc><grammars><include
+        href="xsd0.xsd"/></grammars><resources
+            base="http://localhost:9080/restlayer"><resource
+                path="/quotes"><resource path="/test"><method name="GET"
+                            id="getTest"><response><representation
+                mediaType="application/json"/></response></method></resource><resource
+                    path="/add"><method name="POST"
+                            id="postQuote"><request><representation
+                            mediaType="application/json"/></request><response><representation
+                mediaType="application/json"/></response></method></resource><resource
+                    path="/{id}"><param type="xs:string"
+                    style="template" name="id"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method
+                    name="GET" id="getQuote"><response><representation
+                mediaType="application/json"/></response></method></resource><resource
+                    path="/delete/{id}"><param type="xs:string"
+                    style="template" name="id"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method
+                    name="DELETE" id="deleteQuote"/></resource><resource
+                    path="/delete/all"><method name="DELETE"
+                id="deleteAllQuotes"/></resource><resource
+                    path="/all"><method name="GET"
+                            id="getAllQuotes"><response><representation mediaType="application/json"/></response></method></resource></resource></resources></application>

@@ -1,0 +1,4 @@
+-Duser.language=en
+-Duser.country=GB
+-Dcom.sun.management.jmxremote.port=9090
+#-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7777

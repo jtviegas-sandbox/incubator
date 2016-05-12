@@ -1,0 +1,14 @@
+create a bluemix account:
+https://console.ng.bluemix.net/registration/?Target=https%3A%2F%2Fconsole.ng.bluemix.net%2Flogin
+
+install the command line interfaces from :
+https://console.ng.bluemix.net/docs/cli/index.html#cli
+
+go through this simpe tutorial
+https://console.ng.bluemix.net/docs/containers/container_gettingstarted.html#container_gettingstarted_tutorial
+
+note that you have to install the container plugins:
+from https://console.ng.bluemix.net/docs/containers/container_gettingstarted_tutorial_lesson1.html#container_gettingstarted_tutorial_lesson_1
+..install the cli pugin for bluemix containers
+cf install-plugin https://static-ice.ng.bluemix.net/ibm-containers-linux_x64
+cf install-plugin https://static-ice.ng.bluemix.net/ibm-containers-windows_x64.exe

@@ -1,0 +1,6 @@
+APP_DOCKERFILE=app/Dockerfile
+REGISTRY=registry.ng.bluemix.net/mynodeappbue
+IP1=134.168.12.215
+IP2=134.168.14.112
+PORT=8080
+BLUEMIX_CONTAINER_MEMORY=128

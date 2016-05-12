@@ -1,0 +1,26 @@
+{
+  "name": "consul_service",
+  "version": "1.0.0",
+  "description": "bluemix docker app example",
+  "main": "/opt/app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node /opt/app/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/..."
+  },
+  "engines": {
+     "node": "5.4.1"
+  },
+  "author": "jtv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/.../issues"
+  },
+  "homepage": "https://github.com/...",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
+}
