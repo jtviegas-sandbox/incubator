@@ -10,19 +10,19 @@ https://v1-7.docs.kubernetes.io/docs/tasks/tools/install-kubectl/#download-as-pa
 ```$ ./scripts/connect_cluster.sh```
 
 5. create an headless service, to provide internal resolution for the cassandra nodes
-$ ./scripts/create_headless_service.sh
+```$ ./scripts/create_headless_service.sh```
 
 6. create the stateful set of cassandra nodes
-$ ./scripts/create_stateful_set.sh
+```$ ./scripts/create_stateful_set.sh```
 
 7. wait until the nodes are all created and with status=Running
-$ ./scripts/get_objects.sh
+```$ ./scripts/get_objects.sh```
 
 8. create the cassandra client app
-$ ./scripts/create_client.sh
+```$ ./scripts/create_client.sh```
 
 9. now wait until the nodes are all created and with status=Running
-$ ./scripts/get_objects.sh
+```$ ./scripts/get_objects.sh```
 
 ... we should now see something like:
 ```
@@ -40,10 +40,10 @@ NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES      
 statefulsets/cassandra   3         3         24m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
 ```
 10. check cassandra pods status:
-$ ./scripts/nodetool_status.sh
+```$ ./scripts/nodetool_status.sh```
 
 ... we should see something like:
-
+```
 Datacenter: DC1-K8Demo
 ======================
 Status=Up/Down
@@ -52,34 +52,37 @@ Status=Up/Down
 UN  10.16.0.161  71.04 KiB  32           100.0%            4ad4e1d3-f984-4f0c-a349-2008a40b7f0a  Rack1-K8Demo
 UN  10.16.0.162  71.05 KiB  32           100.0%            fffca143-7ee8-4749-925d-7619f5ca0e79  Rack1-K8Demo
 UN  10.16.2.24   71.03 KiB  32           100.0%            975a5394-45e4-4234-9a97-89c3b39baf3d  Rack1-K8Demo
-
+```
 11. so we can now connect to all the cassandra pods/instances directly with kubectl:
-
+```
 kubectl exec -it cassandra-0 -- cqlsh
 kubectl exec -it cassandra-1 -- cqlsh
 kubectl exec -it cassandra-2 -- cqlsh
-
+```
 12. we can also now connect to the client app
-$ ./scripts/login_client.sh
-
+```$ ./scripts/login_client.sh```
+```
 root@cassandra-client:/opt/app# ls
 app.js  insert_data.sh  node_modules  package.json  read_data.sh  setup_data.sh
-
+```
 13. and once in the client app we can:
 	a) setup data - create keyspace and a table :
-		root@cassandra-client:/opt/app# ./setup_data.sh
+		```root@cassandra-client:/opt/app# ./setup_data.sh```
 	b) insert_data - in the table
-		root@cassandra-client:/opt/app# ./insert_data.sh
+		```root@cassandra-client:/opt/app# ./insert_data.sh```
 	b) read_data - from the table
-		root@cassandra-client:/opt/app# ./read_data.sh
+		```root@cassandra-client:/opt/app# ./read_data.sh```
 
 14. now once in the client app:
 	a) add 2 more rows
+	```
 	root@cassandra-client:/opt/app# ./insert_data.sh
 	root@cassandra-client:/opt/app# ./insert_data.sh
+	```
 	b) check rows in all the db replicas
-	root@cassandra-client:/opt/app# ./read_data_all_dbs.sh
+	```root@cassandra-client:/opt/app# ./read_data_all_dbs.sh```
 	...we should get something like:
+	```
 		 id                                   | age | clubs_season | current_wages | goals_year | name     | nickames | properties
 	--------------------------------------+-----+--------------+---------------+------------+----------+----------+--------------------------------------------------
 	 b6d6f230-c0f5-11e7-98e0-e9450c2870ca |  26 |         null |          null |       null | jonathan |     null | {'goodlooking': 'yes', 'thinkshesthebest': 'no'}
@@ -101,8 +104,9 @@ app.js  insert_data.sh  node_modules  package.json  read_data.sh  setup_data.sh
 	 5da86970-c0f8-11e7-8e29-3f611e0d5e94 |  26 |         null |          null |       null | jonathan |     null | {'goodlooking': 'yes', 'thinkshesthebest': 'no'}
 
 	(3 rows)
-
+```
 15. so now lets delete a pod: 
+```
 $ ./scripts/delete_cassandra_pod.sh 
 £££ delete pod cassandra-0...
 pod "cassandra-0" deleted
@@ -120,8 +124,9 @@ po/cassandra-client   1/1       Running       0          27m       10.16.2.27   
 
 NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES                                LABELS
 statefulsets/cassandra   3         3         43m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
-
+```
 16. wait until kubernetes provisions another pod to replace the deceased one:
+```
 $ ./scripts/get_objects.sh 
 running: kubectl get services,pods,deployments,sts -o wide --show-labels
 NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE       SELECTOR        LABELS
@@ -136,16 +141,16 @@ po/cassandra-client   1/1       Running   0          30m       10.16.2.27    gke
 
 NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES                                LABELS
 statefulsets/cassandra   3         3         45m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
-
+```
 17. back on the client app, lets check the replicas again:
-
+```
  id                                   | age | clubs_season | current_wages | goals_year | name     | nickames | properties
 --------------------------------------+-----+--------------+---------------+------------+----------+----------+--------------------------------------------------
  5fd02b70-c0f8-11e7-8e29-3f611e0d5e94 |  26 |         null |          null |       null | jonathan |     null | {'goodlooking': 'yes', 'thinkshesthebest': 'no'}
  5da86970-c0f8-11e7-8e29-3f611e0d5e94 |  26 |         null |          null |       null | jonathan |     null | {'goodlooking': 'yes', 'thinkshesthebest': 'no'}
 
 (2 rows)
-
+```
 
 
 
