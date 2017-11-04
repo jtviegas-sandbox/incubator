@@ -66,26 +66,28 @@ root@cassandra-client:/opt/app# ls
 app.js  insert_data.sh  node_modules  package.json  read_data.sh  setup_data.sh
 ```
 13. and once in the client app we can:
-	a) setup data - create keyspace and a table :
+
+	1. setup data - create keyspace and a table :
 		```
 		root@cassandra-client:/opt/app# ./setup_data.sh
 		```
-	b) insert_data - in the table
+	2. insert_data - in the table
 		```
 		root@cassandra-client:/opt/app# ./insert_data.sh
 		```
-	b) read_data - from the table
+	3. read_data - from the table
 		```
 		root@cassandra-client:/opt/app# ./read_data.sh
 		```
 
 14. now once in the client app:
-	a) add 2 more rows
+
+	1. add 2 more rows
 	```
 	root@cassandra-client:/opt/app# ./insert_data.sh
 	root@cassandra-client:/opt/app# ./insert_data.sh
 	```
-	b) check rows in all the db replicas
+	2. check rows in all the db replicas
 	```
 	root@cassandra-client:/opt/app# ./read_data_all_dbs.sh
 	```
@@ -113,7 +115,9 @@ app.js  insert_data.sh  node_modules  package.json  read_data.sh  setup_data.sh
 
 	(3 rows)
 ```
+
 15. so now lets delete a pod: 
+
 ```
 $ ./scripts/delete_cassandra_pod.sh 
 £££ delete pod cassandra-0...
@@ -133,7 +137,9 @@ po/cassandra-client   1/1       Running       0          27m       10.16.2.27   
 NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES                                LABELS
 statefulsets/cassandra   3         3         43m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
 ```
+
 16. wait until kubernetes provisions another pod to replace the deceased one:
+
 ```
 $ ./scripts/get_objects.sh 
 running: kubectl get services,pods,deployments,sts -o wide --show-labels
@@ -150,7 +156,9 @@ po/cassandra-client   1/1       Running   0          30m       10.16.2.27    gke
 NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES                                LABELS
 statefulsets/cassandra   3         3         45m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
 ```
+
 17. back on the client app, lets check the replicas again:
+
 ```
  id                                   | age | clubs_season | current_wages | goals_year | name     | nickames | properties
 --------------------------------------+-----+--------------+---------------+------------+----------+----------+--------------------------------------------------
