@@ -67,11 +67,17 @@ app.js  insert_data.sh  node_modules  package.json  read_data.sh  setup_data.sh
 ```
 13. and once in the client app we can:
 	a) setup data - create keyspace and a table :
-		```root@cassandra-client:/opt/app# ./setup_data.sh```
+		```
+		root@cassandra-client:/opt/app# ./setup_data.sh
+		```
 	b) insert_data - in the table
-		```root@cassandra-client:/opt/app# ./insert_data.sh```
+		```
+		root@cassandra-client:/opt/app# ./insert_data.sh
+		```
 	b) read_data - from the table
-		```root@cassandra-client:/opt/app# ./read_data.sh```
+		```
+		root@cassandra-client:/opt/app# ./read_data.sh
+		```
 
 14. now once in the client app:
 	a) add 2 more rows
@@ -80,7 +86,9 @@ app.js  insert_data.sh  node_modules  package.json  read_data.sh  setup_data.sh
 	root@cassandra-client:/opt/app# ./insert_data.sh
 	```
 	b) check rows in all the db replicas
-	```root@cassandra-client:/opt/app# ./read_data_all_dbs.sh```
+	```
+	root@cassandra-client:/opt/app# ./read_data_all_dbs.sh
+	```
 	...we should get something like:
 	```
 		 id                                   | age | clubs_season | current_wages | goals_year | name     | nickames | properties
