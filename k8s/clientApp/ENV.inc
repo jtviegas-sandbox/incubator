@@ -1,0 +1,8 @@
+NAME=cassandra-client
+IMAGE=$NAME
+IMAGE_VERSION=latest
+CONTAINER=$NAME
+HOST=$NAME
+DOCKER_HUB_IMG=kakicode/$NAME
+
+
