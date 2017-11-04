@@ -1,13 +1,13 @@
 1. setup gcloud and kubectl
 https://v1-7.docs.kubernetes.io/docs/tasks/tools/install-kubectl/#download-as-part-of-the-google-cloud-sdk
 
-2. edit scripts/ENV.inc accordingly
+2. edit ```scripts/ENV.inc``` accordingly
 
 3. create a cluster
-$ ./scripts/create_cluster.sh
+```$ ./scripts/create_cluster.sh```
 
 4. connect to cluster
-$ ./scripts/connect_cluster.sh
+```$ ./scripts/connect_cluster.sh```
 
 5. create an headless service, to provide internal resolution for the cassandra nodes
 $ ./scripts/create_headless_service.sh
