@@ -25,7 +25,7 @@ $ ./scripts/create_client.sh
 $ ./scripts/get_objects.sh
 
 ... we should now see something like:
-
+```
 NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE       SELECTOR        LABELS
 svc/cassandra    ClusterIP   None          <none>        9042/TCP   25m       app=cassandra   app=cassandra
 svc/kubernetes   ClusterIP   10.19.240.1   <none>        443/TCP    5d        <none>          component=apiserver,provider=kubernetes
@@ -38,12 +38,12 @@ po/cassandra-client   1/1       Running   0          8m        10.16.2.27    gke
 
 NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES                                LABELS
 statefulsets/cassandra   3         3         24m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
-
+```
 10. check cassandra pods status:
 $ ./scripts/nodetool_status.sh
 
 ... we should see something like:
-
+```
 Datacenter: DC1-K8Demo
 ======================
 Status=Up/Down
@@ -52,8 +52,9 @@ Status=Up/Down
 UN  10.16.0.161  71.04 KiB  32           100.0%            4ad4e1d3-f984-4f0c-a349-2008a40b7f0a  Rack1-K8Demo
 UN  10.16.0.162  71.05 KiB  32           100.0%            fffca143-7ee8-4749-925d-7619f5ca0e79  Rack1-K8Demo
 UN  10.16.2.24   71.03 KiB  32           100.0%            975a5394-45e4-4234-9a97-89c3b39baf3d  Rack1-K8Demo
-
+```
 11. so we can now connect to all the cassandra pods/instances directly with kubectl:
+
 kubectl exec -it cassandra-0 -- cqlsh
 kubectl exec -it cassandra-1 -- cqlsh
 kubectl exec -it cassandra-2 -- cqlsh
