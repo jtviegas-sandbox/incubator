@@ -114,6 +114,7 @@ app.js  insert_data.sh  node_modules  package.json  read_data.sh  setup_data.sh
 	 5da86970-c0f8-11e7-8e29-3f611e0d5e94 |  26 |         null |          null |       null | jonathan |     null | {'goodlooking': 'yes', 'thinkshesthebest': 'no'}
 
 	(3 rows)
+	
 ```
 
 15. so now lets delete a pod: 
