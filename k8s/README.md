@@ -25,7 +25,7 @@ $ ./scripts/create_client.sh
 $ ./scripts/get_objects.sh
 
 ... we should now see something like:
-
+```
 NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE       SELECTOR        LABELS
 svc/cassandra    ClusterIP   None          <none>        9042/TCP   25m       app=cassandra   app=cassandra
 svc/kubernetes   ClusterIP   10.19.240.1   <none>        443/TCP    5d        <none>          component=apiserver,provider=kubernetes
@@ -38,7 +38,7 @@ po/cassandra-client   1/1       Running   0          8m        10.16.2.27    gke
 
 NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES                                LABELS
 statefulsets/cassandra   3         3         24m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
-
+```
 10. check cassandra pods status:
 $ ./scripts/nodetool_status.sh
 
