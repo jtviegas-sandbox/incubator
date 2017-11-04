@@ -115,7 +115,7 @@ app.js  insert_data.sh  node_modules  package.json  read_data.sh  setup_data.sh
 
 	(3 rows)
 	
-```
+	```
 
 15. so now lets delete a pod: 
 
