@@ -1,0 +1,36 @@
+version: '2'
+services:
+  cassandra1:
+    image: cassandra:3
+    container_name: cassandra1
+    environment:
+      - CASSANDRA_SEEDS="cassandra2,cassandra3"
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra1
+    ports:
+      - "7000:7000"
+  cassandra2:
+    image: cassandra:3
+    container_name: cassandra2
+    environment:
+      - CASSANDRA_SEEDS="cassandra1,cassandra3"
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra2
+    ports:
+      - "7000:7000"
+    links:
+      - "cassandra1:cassandra1"
+    depends_on: 
+      - cassandra1
+  cassandra3:
+    image: cassandra:3
+    container_name: cassandra3
+    environment:
+      - CASSANDRA_SEEDS="cassandra1,cassandra2"
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra3
+    ports:
+      - "7000:7000"
+    links:
+      - "cassandra1:cassandra1"
+      - "cassandra2:cassandra2"
+    depends_on: 
+      - cassandra1
+      - cassandra2

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cass
+#readinessProbe:
+#  httpGet:
+#    path: /ready
+#    port: 8080
+#  periodSeconds: 2
+#  initialDelaySeconds: 0
+#  failureThreshold: 3
+#  successThreshold: 1
+spec:
+  containers:
+    - image: cassandra:3
+      name: cass1
+      ports:
+        - containerPort: 7000
+          name: http
+          protocol: TCP 
+
+  

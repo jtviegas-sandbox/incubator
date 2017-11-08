@@ -1,0 +1,25 @@
+# --- k8s_notes ---
+
+# get deployments
+	kubectl get deployments
+
+# get services
+kubectl get services -o wide
+
+# describe service
+	kubectl describe service cass-serv
+
+# watch endpoint
+	get endpoints cass-serv --watch
+
+# edit service
+	kubectl edit service cass-serv
+
+# describe endpoints
+	kubectl describe endpoints cass-serv
+
+# delete service
+	kubectl delete service cass-serv
+
+	
+

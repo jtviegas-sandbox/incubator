@@ -1,0 +1,20 @@
+tar -xvf apache-cassandra-3.6-bin.tar.gz cassandra
+
+# check entry in cassandra-env.sh 
+		-Xloggc:bin/../logs/gc.log
+	...change it to 
+		-Dloggc:bin/../logs/gc.log
+
+# add apache-cassandra-3.6\bin to path
+
+# start cassandra in the foregorund:
+	bin/cassandra -f
+
+# kill cassandra 
+	pkill -f CassandraDaemon
+
+# verify if is running
+	bin/nodetool status
+
+
+
