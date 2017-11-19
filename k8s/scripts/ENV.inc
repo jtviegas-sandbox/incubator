@@ -10,7 +10,7 @@ ZONE=europe-west3-b
 # nodes config 
 IMAGE_TYPE=UBUNTU
 NUM_NODES=5
-PASSWORD=passw0rd
+PASSWORD=________
 USERNAME=root
 SCOPES=storage-rw,compute-rw
 # identifier label of cassandra nodes

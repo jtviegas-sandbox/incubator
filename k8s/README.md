@@ -274,11 +274,11 @@ root@cassandra-client:/opt/app#
 
 	_replication factor_ \* _number of tokens assigned_
 
-	Remember that we've created the keyspace testing with _replication factor_ 3 (\#13.i), and also note that we've inserted 5 different sensors, column _sensor_ being the partition key in the readings table.
+	Remember that we've created the keyspace testing with _replication factor_ 3 (\#13.i), and also note that we've inserted 5 different sensors, column _sensor_ being the partition key in the _readings_ table.
 	That means the tokens are evenly distributed by the nodes and having 5 nodes with 5 tokens means that each node has approximately 20% of all the tokens range, so multiplying it by the replication factor, 20 \* 3, we get a number in the vicinity of 60%. 
 
 
-15. so now lets force the failure of a cassandra node deleting a cassandra pod in kubernetes: 
+15. so now let's force the failure of a cassandra node deleting a cassandra pod in kubernetes: 
 
 ```
 $ scripts/delete_cassandra_pod.sh 1
@@ -398,7 +398,7 @@ statefulsets/cassandra   5         5         2h        cassandra    gcr.io/googl
 >>> ... done.
 ```
 
-20. back on the client app, lets check the data again but this time lets try to find records of sensor1 and sensor2 with ```CONSISTENCY LEVEL ONE``, that is, we want just one answer and we accept the first one arriving:
+20. back on the client app, let's check the data again but this time lets try to find records of sensor1 and sensor2 with ```CONSISTENCY LEVEL ONE```, that is, we want just one answer and we accept the first one arriving:
 
 content of 	```check_data.sh```:
 ```
@@ -446,7 +446,7 @@ Consistency level set to ONE.
 (3 rows)
 ```
 
-Here we are seing the effect of data repair, in the first call, the first node answering was responsible for _sensor1_ token range and its answer was accurate, but regarding _sensor2_ token range, this first answering node was a new one, that got that token range assigned after the bringing down of those other 3 cassandra nodes, and this new node has not yet received any new data so it did not provide any rows related to _sensor2_, but in that process, there was another node that had a replica of those missing _sensor2_ rows, and even conveying the empty answer of the first node, Cassandra figured out that data was not synchronized between those nodes and forced the repair. That is why after this first call to ```check _data.sh``` we have already all the data from both sensors there, and now even a ```QUORUM``` consistency level gives us the values:
+Here we are seeing the effect of data repair, in the first call, the first node answering was responsible for _sensor1_ token range and its answer was accurate, but regarding _sensor2_ token range, this first answering node was a new one, that got that token range assigned after the bringing down of those other 3 cassandra nodes, and this new node has not yet received any new data so it did not provide any rows related to _sensor2_, but in that process, there was another node that had a replica of those missing _sensor2_ rows, and even conveying the empty answer of the first node, Cassandra figured out that data was not synchronized between those nodes and forced the repair. That is why after this first call to ```check _data.sh``` we have already all the data from both sensors there, and now even a ```QUORUM``` consistency level gives us the values:
 ```
 root@cassandra-client:/opt/app# ./check_data.sh QUORUM
 reading data from sensor1 and sensor2 with consistency level QUORUM
