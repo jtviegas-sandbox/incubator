@@ -1,13 +1,15 @@
+# Cassandra High Availability experiment on Kubernetes
+
 1. Start by creating one account in Google Cloud Platform and, once done, use your account to create a project, in this example we’ve used a project named _haveagolab_;
 2. setup gcloud and kubectl
 https://v1-7.docs.kubernetes.io/docs/tasks/tools/install-kubectl/#download-as-part-of-the-google-cloud-sdk
 3. download this experiment bundle from dist/cassandra-k8s.tar.bz2 and extract it to a base folder, move your shell to that folder; you should see once you ```ls```:
 ```
-jtviegas@osboxes:/tmp/test$ ls
+$ ls
 config  README.md  scripts
 ```
 
-4. edit the variable GKE_PROJECT, PASSWORD and USERNAME variables in ```scripts/ENV.inc``` accordingly to step #1;
+4. edit the variable ```GKE_PROJECT```, ```PASSWORD``` and ```USERNAME``` variables in ```scripts/ENV.inc``` accordingly to step \#1;
 
 5. create a cluster
 ```$ ./scripts/create_cluster.sh```
