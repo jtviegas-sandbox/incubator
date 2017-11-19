@@ -270,11 +270,11 @@ root@cassandra-client:/opt/app#
 	UN  10.16.3.7  126 KiB    32           56.2%             5a79a45c-353b-4574-97a4-e5a14bee90b3  Rack1-K8Demo
 	```
 
-	...here we can see that every node has approximately 60% os the data, which turns out to be the 
+	...here we can see that every node has approximately 60% of the data, which turns out to be the 
 
 	_replication factor_ \* _number of tokens assigned_
 
-	Remember that we've created the keyspace testing with _replication factor_ 3 (\#13.i), and also note that we've inserted 5 different sensors, which column sensor is the partition key the readings table.
+	Remember that we've created the keyspace testing with _replication factor_ 3 (\#13.i), and also note that we've inserted 5 different sensors, column _sensor_ being the partition key in the readings table.
 	That means the tokens are evenly distributed by the nodes and having 5 nodes with 5 tokens means that each node has approximately 20% of all the tokens range, so multiplying it by the replication factor, 20 \* 3, we get a number in the vicinity of 60%. 
 
 
@@ -375,11 +375,11 @@ $ scripts/delete_cassandra_pod.sh 2
 >>> deleting pod cassandra-2...
 pod "cassandra-2" deleted
 >>> ... done.
-jtviegas@osboxes:~/Documents/workspace/incubator/k8s$ scripts/delete_cassandra_pod.sh 4
+$ scripts/delete_cassandra_pod.sh 4
 >>> deleting pod cassandra-4...
 pod "cassandra-4" deleted
 >>> ... done.
-jtviegas@osboxes:~/Documents/workspace/incubator/k8s$ scripts/get_objects.sh 
+$ scripts/get_objects.sh 
 >>> running: kubectl get services,pods,deployments,sts -o wide --show-labels
 NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE       SELECTOR        LABELS
 svc/cassandra    ClusterIP   None          <none>        9042/TCP   2h        app=cassandra   app=cassandra
@@ -398,7 +398,7 @@ statefulsets/cassandra   5         5         2h        cassandra    gcr.io/googl
 >>> ... done.
 ```
 
-20. back on the client app, lets check the data again but this time lets try to find records of sensor1 and sensor2 with CONSISTENCY LEVEL ONE, that is, we want just one answer and we accept the first one arriving:
+20. back on the client app, lets check the data again but this time lets try to find records of sensor1 and sensor2 with ```CONSISTENCY LEVEL ONE``, that is, we want just one answer and we accept the first one arriving:
 
 content of 	```check_data.sh```:
 ```
@@ -446,7 +446,7 @@ Consistency level set to ONE.
 (3 rows)
 ```
 
-Here we are seing the effect of data repair, in the first call, the first node answering was responsible for sensor1 token range and its answer was accurate, but regarding sensor2 token range, this first answering node was a new one, that got that token range assigned after the bringing down of those other 3 cassandra nodes, and this new node has not yet received any new data, but in that process, there was another node that had a replica of those sensor2 rows, and even conveying the empty answer of the first node, Cassandra figured out that data was not synchronized between those nodes and forced the repair. That is why after this first call to ```check _data.sh``` we have already all the data from both sensors there, and now even a ```QUORUM``` consistency level gives us the values:
+Here we are seing the effect of data repair, in the first call, the first node answering was responsible for _sensor1_ token range and its answer was accurate, but regarding _sensor2_ token range, this first answering node was a new one, that got that token range assigned after the bringing down of those other 3 cassandra nodes, and this new node has not yet received any new data so it did not provide any rows related to _sensor2_, but in that process, there was another node that had a replica of those missing _sensor2_ rows, and even conveying the empty answer of the first node, Cassandra figured out that data was not synchronized between those nodes and forced the repair. That is why after this first call to ```check _data.sh``` we have already all the data from both sensors there, and now even a ```QUORUM``` consistency level gives us the values:
 ```
 root@cassandra-client:/opt/app# ./check_data.sh QUORUM
 reading data from sensor1 and sensor2 with consistency level QUORUM
@@ -474,7 +474,7 @@ Consistency level set to QUORUM.
 Unavailable: Error from server: code=1000 [Unavailable exception] message="Cannot achieve consistency level QUORUM" info={'required_replicas': 2, 'alive_replicas': 1, 'consistency': 'QUORUM'}
 ```
 
-...shows us that we can't have ```QUORUM``` for all the tokens, as this is an open select query for all the sensors, but we do have for ```CONSISTENCY LEVEL ONE```, even though we don't have all the data there:
+...shows us that we can't have ```QUORUM``` for all the tokens, as this is an open select query for all the sensors, but we do have for ```CONSISTENCY LEVEL ONE```, even though we don't have all the data there (only 4 rows out of the original 8):
 ```
 root@cassandra-client:/opt/app# ./read_data.sh ONE   
 reading data with consistency level ONE
@@ -511,15 +511,15 @@ UN  10.16.3.7  170.97 KiB  32           37.8%             5a79a45c-353b-4574-97a
 
 So what this means is there are still token ranges and data assigned to cassandra nodes that are down, but Cassandra is still hoping they will come up, so it hasn't
 yet redistributed the token ranges over the live nodes. Although there are situations where these nodes can be brought back alive, this is not such a situation and thus
-what we can do now is to tell Cassandra not to wait for them. So we will force Cassandra to redistribute the tokens over the live nodes only, so back in out test environment:
+what we can do now is tell Cassandra not to wait for them, to simply forget about them. So we will force Cassandra to redistribute the tokens over the live nodes only, so back in our test environment:
 ```
 $ ./scripts/nodetool_removenode.sh e8d22a05-8c11-4a9f-aef5-e4c37e2b2f91
 >>> removing dead node e8d22a05-8c11-4a9f-aef5-e4c37e2b2f91
 >>> ... done.
-jtviegas@osboxes:~/Documents/workspace/incubator/k8s$ ./scripts/nodetool_removenode.sh b98e4d4a-c4b0-40be-b049-bddb6fe8efe9
+$ ./scripts/nodetool_removenode.sh b98e4d4a-c4b0-40be-b049-bddb6fe8efe9
 >>> removing dead node b98e4d4a-c4b0-40be-b049-bddb6fe8efe9
 >>> ... done.
-jtviegas@osboxes:~/Documents/workspace/incubator/k8s$ ./scripts/nodetool_removenode.sh 9a44ea9c-d45c-4d19-bc31-96b22aeea0d1
+$ ./scripts/nodetool_removenode.sh 9a44ea9c-d45c-4d19-bc31-96b22aeea0d1
 >>> removing dead node 9a44ea9c-d45c-4d19-bc31-96b22aeea0d1
 >>> ... done.
 ```
@@ -563,7 +563,7 @@ Consistency level set to QUORUM.
 ```
 ...all the data was replicated across all the live nodes.
 
-The system was resilient to the loss of more than half (3) of its nodes.
+The system was resilient to the loss of more than half (3) of its initial 5 nodes.
 
 
 
