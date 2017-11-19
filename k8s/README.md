@@ -77,7 +77,7 @@ statefulsets/cassandra   5         5         10m       cassandra    gcr.io/googl
 >>> ... done.
 ```
 
-11. create the cassandra client app
+11. create the cassandra client app - this is a simple container with the cassandra binary tools for testing purposes, that will be part of cassandra network in the kubernetes cluster, to which we will connect and invoke commands on the cassandra ring:
 ```
 $ ./scripts/create_client.sh 
 >>> creating cassandra client app...
