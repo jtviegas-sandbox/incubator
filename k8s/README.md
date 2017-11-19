@@ -1,9 +1,8 @@
 # Cassandra High Availability experiment on Kubernetes
 
-1. Start by creating one account in Google Cloud Platform and, once done, use your account to create a project, in this example we’ve used a project named _haveagolab_;
-2. setup gcloud and kubectl
-https://v1-7.docs.kubernetes.io/docs/tasks/tools/install-kubectl/#download-as-part-of-the-google-cloud-sdk
-3. download this experiment bundle from dist/cassandra-k8s.tar.bz2 and extract it to a base folder, move your shell to that folder; you should see once you ```ls```:
+1. Start by creating one account in [Google Cloud Platform](https://cloud.google.com/) and, once done, use your account to create a project, in this example we’ve used a project named _haveagolab_;
+2. [setup gcloud and kubectl](https://v1-7.docs.kubernetes.io/docs/tasks/tools/install-kubectl/#download-as-part-of-the-google-cloud-sdk)
+3. download this experiment bundle from [dist/cassandra-k8s.tar.bz2](https://github.com/jtviegas/incubator/raw/master/k8s/dist/cassandra-k8s.tar.bz2) and extract it to a base folder, move your shell to that folder; you should see once you ```ls```:
 ```
 $ ls
 config  README.md  scripts
@@ -13,34 +12,33 @@ config  README.md  scripts
 
 5. create a cluster
 ```$ ./scripts/create_cluster.sh```
-should see something like this in the output:
+
+...you should see something like this in the output:
+```
 NAME         ZONE            MASTER_VERSION  MASTER_IP  MACHINE_TYPE   NODE_VERSION  NUM_NODES  STATUS
 cluster-one  europe-west3-b  1.7.8-gke.0                n1-standard-1  1.7.8-gke.0   5          PROVISIONING
-
-6. connect to cluster
-```$ ./scripts/connect_cluster.sh```
-
-jtviegas@osboxes:/tmp/test$ ./scripts/connect_cluster.sh 
+```
+6. connect  your shell gcloud environment to the cluster
+```
+$ ./scripts/connect_cluster.sh 
 >>> connection to cluster ...
 Fetching cluster endpoint and auth data.
 kubeconfig entry generated for cluster-one.
 >>> ... done.
-
+```
 
 7. check the status of the cluster
-```$ ./scripts/get_objects.sh```
-
-jtviegas@osboxes:/tmp/test$ ./scripts/get_objects.sh 
+```
+$ ./scripts/get_objects.sh 
 >>> running: kubectl get services,pods,deployments,sts -o wide --show-labels
 NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE       SELECTOR   LABELS
 svc/kubernetes   ClusterIP   10.19.240.1   <none>        443/TCP   10m       <none>     component=apiserver,provider=kubernetes
 >>> ... done.
-
+```
 
 8. create an headless service, to provide internal name resolution for the cassandra nodes
-```$ ./scripts/create_headless_service.sh```
-
-jtviegas@osboxes:/tmp/test$ ./scripts/create_headless_service.sh 
+```
+$ ./scripts/create_headless_service.sh 
 >>> creating cassandra headless service to provide internal dns to cassandra nodes...
 service "cassandra" created
 >>> ... done.
@@ -49,19 +47,19 @@ NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE       SELECT
 cassandra    ClusterIP   None          <none>        9042/TCP   0s        app=cassandra   app=cassandra
 kubernetes   ClusterIP   10.19.240.1   <none>        443/TCP    11m       <none>          component=apiserver,provider=kubernetes
 >>> ... done.
-
+```
 
 9. create the stateful set of cassandra nodes
-```$ ./scripts/create_stateful_set.sh```
-
-jtviegas@osboxes:/tmp/test$ ./scripts/create_stateful_set.sh 
+```
+$ ./scripts/create_stateful_set.sh 
 >>> creating cassandra stateful set...
 statefulset "cassandra" created
 >>> ... done.
+```
 
 10. after a couple of minutes you'll be able to see all the 5 nodes already created, wait until the nodes are all created and with status=Running:
-
-jtviegas@osboxes:/tmp/test$ ./scripts/get_objects.sh 
+```
+$ ./scripts/get_objects.sh 
 >>> running: kubectl get services,pods,deployments,sts -o wide --show-labels
 NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE       SELECTOR        LABELS
 svc/cassandra    ClusterIP   None          <none>        9042/TCP   15m       app=cassandra   app=cassandra
@@ -77,19 +75,19 @@ po/cassandra-4   1/1       Running   0          8m        10.16.4.4   gke-cluste
 NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES                                LABELS
 statefulsets/cassandra   5         5         10m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
 >>> ... done.
-
+```
 
 11. create the cassandra client app
-```$ ./scripts/create_client.sh```
-
-jtviegas@osboxes:/tmp/test$ ./scripts/create_client.sh 
+```
+$ ./scripts/create_client.sh 
 >>> creating cassandra client app...
 pod "cassandra-client" created
 >>> ... done.
+```
 
 12. now wait until the nodes are all created and with status=Running
-```$ ./scripts/get_objects.sh```
-jtviegas@osboxes:/tmp/test$ ./scripts/get_objects.sh 
+```
+$ ./scripts/get_objects.sh 
 >>> running: kubectl get services,pods,deployments,sts -o wide --show-labels
 NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE       SELECTOR        LABELS
 svc/cassandra    ClusterIP   None          <none>        9042/TCP   19m       app=cassandra   app=cassandra
@@ -106,7 +104,7 @@ po/cassandra-client   1/1       Running   0          1m        10.16.3.8   gke-c
 NAME                     DESIRED   CURRENT   AGE       CONTAINERS   IMAGES                                LABELS
 statefulsets/cassandra   5         5         13m       cassandra    gcr.io/google-samples/cassandra:v12   app=cassandra
 >>> ... done.
-
+```
 
 13. check cassandra pods status:
 ```$ ./scripts/nodetool_status.sh```
