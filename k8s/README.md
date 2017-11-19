@@ -274,7 +274,7 @@ root@cassandra-client:/opt/app#
 
 	_replication factor_ \* _number of tokens assigned_
 
-	Remember that we've created the keyspace testing with _replication factor_ 3 (\#13.i), and also note that we've inserted 5 different sensors, column _sensor_ being the partition key in the readings table.
+	Remember that we've created the keyspace testing with _replication factor_ 3 (\#13.i), and also note that we've inserted 5 different sensors, column _sensor_ being the partition key in the _readings_ table.
 	That means the tokens are evenly distributed by the nodes and having 5 nodes with 5 tokens means that each node has approximately 20% of all the tokens range, so multiplying it by the replication factor, 20 \* 3, we get a number in the vicinity of 60%. 
 
 
