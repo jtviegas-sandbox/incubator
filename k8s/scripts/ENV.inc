@@ -1,14 +1,18 @@
-export LOCAL_CASSANDRA=/home/joaovieg/Documents/workspace/github/incubator/cassandra/tmp/apache-cassandra-3.11.0
+### --- google container engine (GKE) related config --- ###
+# account project
 GKE_PROJECT=haveagolab
+# cluster name
 CLUSTER=cluster-one
-APP_LABEL=cassandra
+# cluster version
 CLUSTER_VERSION=1.7.8
+# cluster location
+ZONE=europe-west3-b
+# nodes config 
 IMAGE_TYPE=UBUNTU
 NUM_NODES=3
 PASSWORD=passw0rd
 USERNAME=root
 SCOPES=storage-rw,compute-rw
-ZONE=europe-west3-b
-
-REVERSE_PROXY=35.198.164.26
+# identifier label of cassandra nodes
+APP_LABEL=cassandra
 

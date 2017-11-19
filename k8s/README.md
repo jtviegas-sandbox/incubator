@@ -1,7 +1,26 @@
 1. setup gcloud and kubectl
 https://v1-7.docs.kubernetes.io/docs/tasks/tools/install-kubectl/#download-as-part-of-the-google-cloud-sdk
 
-2. edit ```scripts/ENV.inc``` accordingly
+2. edit ```scripts/ENV.inc``` accordingly:
+
+	### --- google container engine (GKE) related config --- ###
+	# account project
+	GKE_PROJECT=haveagolab
+	# cluster name
+	CLUSTER=cluster-one
+	# cluster version
+	CLUSTER_VERSION=1.7.8
+	# cluster location
+	ZONE=europe-west3-b
+	# nodes config 
+	IMAGE_TYPE=UBUNTU
+	NUM_NODES=3
+	PASSWORD=passw0rd
+	USERNAME=root
+	SCOPES=storage-rw,compute-rw
+	# identifier label of cassandra nodes
+	APP_LABEL=cassandra
+
 
 3. create a cluster
 ```$ ./scripts/create_cluster.sh```

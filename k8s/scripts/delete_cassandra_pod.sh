@@ -1,8 +1,13 @@
 #!/bin/bash
 
-echo "£££ delete pod cassandra-0..."
+_POD=cassandra-0
+if [ $1 ]; then
+	_POD=cassandra-$1
+fi
 
-kubectl delete pod cassandra-0
+echo "£££ deleting pod $_POD..."
+
+kubectl delete pod $_POD
 
 echo "£££ ... done."
 
