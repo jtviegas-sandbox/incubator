@@ -2,9 +2,10 @@
 2. setup gcloud and kubectl
 https://v1-7.docs.kubernetes.io/docs/tasks/tools/install-kubectl/#download-as-part-of-the-google-cloud-sdk
 3. download this experiment bundle from dist/cassandra-k8s.tar.bz2 and extract it to a base folder, move your shell to that folder; you should see once you ```ls```:
-
+```
 jtviegas@osboxes:/tmp/test$ ls
 config  README.md  scripts
+```
 
 4. edit the variable GKE_PROJECT, PASSWORD and USERNAME variables in ```scripts/ENV.inc``` accordingly to step #1;
 
