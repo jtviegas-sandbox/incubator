@@ -4,12 +4,12 @@ GKE_PROJECT=haveagolab
 # cluster name
 CLUSTER=cluster-one
 # cluster version
-CLUSTER_VERSION=1.7.8
+#CLUSTER_VERSION=1.7.8
 # cluster location
 ZONE=europe-west3-b
 # nodes config 
 IMAGE_TYPE=UBUNTU
-NUM_NODES=3
+NUM_NODES=5
 PASSWORD=passw0rd
 USERNAME=root
 SCOPES=storage-rw,compute-rw

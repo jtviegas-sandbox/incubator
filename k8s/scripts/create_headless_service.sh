@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "£££ creating cassandra headless service to provide internal dns to cassandra nodes..."
+echo ">>> creating cassandra headless service to provide internal dns to cassandra nodes..."
 scripts_folder=$(dirname $(readlink -f $0))
 base_folder=$(dirname $scripts_folder)
 config_folder=$base_folder/config
@@ -9,7 +9,9 @@ config_folder=$base_folder/config
 
 kubectl create -f $config_folder/headless_service.yaml
 
-echo "£££ ... done."
+echo ">>> ... done."
 
-echo "running: kubectl get services -o wide --show-labels"
+echo ">>> running: kubectl get services -o wide --show-labels"
 kubectl get services -o wide --show-labels
+
+echo ">>> ... done."
