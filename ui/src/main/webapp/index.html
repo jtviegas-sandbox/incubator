@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>IEM</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">IBM<span class="logo_colour">Endpoint Manager</span></a></h1>
+          <h2>Automation Plan Action Analyser</h2>
+        </div>
+        <form method="post" action="#" id="search">
+          <input class="search" type="text" name="search_field" value="search....." onclick="javascript: document.forms['search'].search_field.value=''" />
+          <input name="search" type="image" style="float: right;border: 0; margin: 20px 0 0 0;" src="images/search.png" alt="search" title="search" />
+        </form>
+      </div>
+      <nav>
+        <ul class="sf-menu" id="nav">
+          <li class="current"><a href="index.html">About</a></li>
+          <li><a href="tasklist.html">Task List</a></li>
+          <li><a href="barchart.html">Bar Chart</a></li>
+          <li><a href="piechart.html">Pie Chart</a></li>
+          <li><a href="linechart.html">Line Chart</a>
+          <li><a href="contact.php">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="site_content">
+     <div id="sidebar_container">
+        <div class="sidebar">
+          <h3>Useful Links</h3>
+                    <div class="sidebar_item">
+					<ul>
+					  <li><a href="#">link 1</a></li>
+					  <li><a href="#">link 2</a></li>
+					  <li><a href="#">link 3</a></li>
+					</ul>
+				 </div>
+			<div class="sidebar_base"></div>
+        </div>
+		
+        <div class="sidebar">
+          <h3>Announcements</h3>
+          <div class="sidebar_item">
+            <ul>
+              <li><a href="#">link 1</a></li>
+              <li><a href="#">link 2</a></li>
+              <li><a href="#">link 3</a></li>
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+	
+     </div>
+      <div class="content">
+        <h1>Welcome to IEM Automation Plan Action Analyser</h1>
+        <h2 style="padding-left: 14px;">Problem Statement</h2>
+			<div class="content_item" style="padding-bottom: 4px;">
+				<p>
+					<h3>What is an IEM Automation Plan Action (APA)?</h3>
+						IEM uses APAs to remotely manage and deliver software updates to its clients (also known as endpoints).
+						IEM users currently have no way of finding out why certain APAs failed or why they took so long to complete.
+				</p>
+			</div>
+		</div>
+       <div class="content">
+			<h2 style="padding-left: 14px;">Motivation for Project</h2>
+			<div class="content_item">
+				<p>
+					<img src="images/apa_architecture.png" alt="apa_architecture"style="float: right; width: 450px; height: 350px; margin: 0 5px 0 0;">
+
+					Give Endpoint Managers a tool to analyze and evaluate bottlenecks and performance issues impacting APAs by 
+					leveraging Analytics Services on the BlueMix platform including PI Infostream Streams.
+				</p>
+				
+				<p>
+					Use existing technologies and services on the IBM BleMix platform to present Automation Plan Action reports
+					in a visual and easily readable/ understandable way.
+				</p>
+			</div>
+		</div>
+	</div>
+	
+    <footer>
+      <p><a href="index.html">About</a> | <a href="tasklist.html">Task List</a> | <a href="barchart.html">Bar Chart</a> | <a href="piechart.html">Pie Chart</a> | <a href="contact.php">Contact Us</a></p>
+      <p>Copyright &copy; IBM Endpoint Manager | <a href="http://www.ibm.com">Managing your applications on the cloud!</a></p>
+    </footer>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+</body>
+</html>

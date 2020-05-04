@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>IEM</title>
+			<meta name="description" content="website description" />
+			<meta name="keywords" content="website keywords, website keywords" />
+			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+			<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<!-- modernizr enables HTML5 elements and feature detects -->
+		<script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+	</head>
+
+	<body onLoad="plotData()">
+		<div id="main">
+			<header>
+			  <div id="logo">
+				<div id="logo_text">
+				  <!-- class="logo_colour", allows you to change the colour of the text -->
+				  <h1><a href="index.html">IBM<span class="logo_colour">Endpoint Manager</span></a></h1>
+				  <h2>Automation Plan Action Analyser</h2>
+				</div>
+				<form method="post" action="#" id="search">
+				  <input class="search" type="text" name="search_field" value="search....." onclick="javascript: document.forms['search'].search_field.value=''" />
+				  <input name="search" type="image" style="float: right;border: 0; margin: 20px 0 0 0;" src="images/search.png" alt="search" title="search" />
+				</form>
+			  </div>
+			  <nav>
+				<ul class="sf-menu" id="nav">
+				  <li><a href="index.html">About</a></li>
+				  <li><a href="tasklist.html">Task List</a></li>
+				  <li><a href="barchart.html">Bar Chart</a></li>
+				  <li class="current"><a href="piechart.html">Pie Chart</a></li>
+				  <li><a href="linechart.html">Line Chart</a>
+				  <li><a href="contact.php">Contact Us</a></li>
+				</ul>
+			  </nav>
+			</header>
+			
+		<div id="site_content">
+		
+			<div id="sidebar_container">
+				<div class="sidebar">
+					<h3>Failed Plans</h3>
+						<div class="sidebar_item">
+							<ul>
+							  <li><a href="#">link 1</a></li>
+							  <li><a href="#">link 2</a></li>
+							  <li><a href="#">link 3</a></li>
+							</ul>
+						</div>
+					<div class="sidebar_base"></div>
+				</div>
+				
+				<div class="sidebar">
+				  <h3>Running Plans</h3>
+				  <div class="sidebar_item">
+					<ul>
+					  <li><a href="#">link 1</a></li>
+					  <li><a href="#">link 2</a></li>
+					  <li><a href="#">link 3</a></li>
+					</ul>
+				  </div>
+				  <div class="sidebar_base"></div>
+				</div>
+			
+				<div class="sidebar">
+				  <h3>Completed Plans</h3>
+				  <div class="sidebar_item">
+					<ul>
+					  <li><a href="#">link 1</a></li>
+					  <li><a href="#">link 2</a></li>
+					  <li><a href="#">link 3</a></li>
+					</ul>
+				  </div>
+				  <div class="sidebar_base"></div>
+				</div>
+			
+				<div class="sidebar">
+					<h3>Pending Plans</h3>
+					<div class="sidebar_item">
+						<ul>
+							<li><a href="#">link 1</a></li>
+							<li><a href="#">link 2</a></li>
+							<li><a href="#">link 3</a></li>
+						</ul>
+					</div>
+					<div class="sidebar_base"></div>
+				</div>
+		
+				<div class="sidebar">
+					<h3>Paused Plans</h3>
+					<div class="sidebar_item">
+						<ul>
+							<li><a href="#">link 1</a></li>
+							<li><a href="#">link 2</a></li>
+							<li><a href="#">link 3</a></li>
+						</ul>
+					</div>
+					<div class="sidebar_base"></div>
+				</div>	
+			</div>
+		 
+			<div class="content">
+			
+				<!-- <h1>Doughnut Chart</h1> -->
+			
+				<div class="content_item">
+			  
+					<!-- Insert chart here -->
+				
+					<h2>Total Number of Automation Plans in %</h2>
+					
+					<div>
+						<canvas id="canvas" width="400" height="300">
+							This text is displayed if your browser does not support HTML5 Canvas.
+						</canvas>
+					</div>
+		
+					<script type="text/javascript">
+
+						var myColor = ["#ECD078","#D95B43","#C02942","#542437","#53777A"];
+						var myData = [10,30,20,60,40];
+
+						function getTotal() {
+						var myTotal = 0;
+						
+							for (var j = 0; j < myData.length; j++) {
+								myTotal += (typeof myData[j] == 'number') ? myData[j] : 0;
+							}
+							return myTotal;
+						}
+
+						function plotData() {
+							var canvas;
+							var ctx;
+							var lastend = 0;
+							var myTotal = getTotal();
+
+							canvas = document.getElementById("canvas");
+							ctx = canvas.getContext("2d");
+							ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+							for (var i = 0; i < myData.length; i++) {
+								ctx.fillStyle = myColor[i];
+								ctx.beginPath();
+								ctx.moveTo(200,150);
+								ctx.arc(200,150,150,lastend,lastend + (Math.PI*2*(myData[i]/myTotal)), false);
+							
+								ctx.lineTo(200,150);
+								ctx.fill();
+								lastend += Math.PI*2*(myData[i]/myTotal);
+							}
+						}
+
+						plotData();
+
+					</script>
+					
+					<!-- End chat insertion here -->		
+				</div>		
+			</div>
+			
+			<div class="content">
+				<h1>Report Summary</h1>
+				<div class="content_item">
+					<p>The following observations were made:</p>
+					<ul>
+						<li>Network Trafic</li>
+						<li>Number of downloads</li>
+						<li>Task Duration</li>
+						<li>Endpoint Availability</li>
+						<li>Protocol</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<footer>
+			<p><a href="index.html">About</a> | <a href="tasklist.html">Task List</a> | <a href="barchart.html">Bar Chart</a> | <a href="piechart.html">Pie Chart</a> | <a href="contact.php">Contact Us</a></p>
+			<p>Copyright &copy; IBM Endpoint Manager | <a href="http://www.ibm.com">Managing your applications on the cloud!</a></p>
+		</footer>
+		
+	</div>
+	  
+		<!-- javascript at the bottom for fast page loading -->
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+		<script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+	  
+		<script type="text/javascript">
+			$(document).ready(function() {
+			  $('ul.sf-menu').sooperfish();
+			});
+		</script> 
+	</body>
+</html>

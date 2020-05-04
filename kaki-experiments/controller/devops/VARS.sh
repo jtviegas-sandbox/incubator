@@ -1,0 +1,10 @@
+
+IMAGE=kaki-controller
+HOST=controller
+IMAGE_VERSION=0.0.1
+CONTAINER=$HOST
+PORT=3000
+
+BLUEMIX_CONTAINER_MEMORY=128
+REGISTRY=registry.ng.bluemix.net/mynodeappbue
+BLUEMIX_IMG=$REGISTRY/$IMAGE

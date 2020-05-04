@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>IEM</title>
+		<meta name="description" content="website description" />
+		<meta name="keywords" content="website keywords, website keywords" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<!-- modernizr enables HTML5 elements and feature detects -->
+		<script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">IBM<span class="logo_colour">Endpoint Manager</span></a></h1>
+          <h2>Automation Plan Action Analyser</h2>
+        </div>
+        <form method="post" action="#" id="search">
+          <input class="search" type="text" name="search_field" value="search....." onclick="javascript: document.forms['search'].search_field.value=''" />
+          <input name="search" type="image" style="float: right;border: 0; margin: 20px 0 0 0;" src="images/search.png" alt="search" title="search" />
+        </form>
+      </div>
+      <nav>
+        <ul class="sf-menu" id="nav">
+          <li><a href="index.html">About</a></li>
+          <li><a href="tasklist.html">Task List</a></li>
+          <li class="current"><a href="barchart.html">Bar Chart</a></li>
+          <li><a href="piechart.html">Pie Chart</a></li>
+          <li><a href="linechart.html">Line Chart</a>
+          <li><a href="contact.php">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="site_content">
+     <div id="sidebar_container">
+        <div class="sidebar">
+          <h3>Failed Plans</h3>
+                    <div class="sidebar_item">
+					<ul>
+					  <li><a href="#">link 1</a></li>
+					  <li><a href="#">link 2</a></li>
+					  <li><a href="#">link 3</a></li>
+					</ul>
+				 </div>
+			<div class="sidebar_base"></div>
+        </div>
+		
+        <div class="sidebar">
+          <h3>Running Plans</h3>
+          <div class="sidebar_item">
+            <ul>
+              <li><a href="#">link 1</a></li>
+              <li><a href="#">link 2</a></li>
+              <li><a href="#">link 3</a></li>
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+		
+        <div class="sidebar">
+          <h3>Completed Plans</h3>
+          <div class="sidebar_item">
+            <ul>
+              <li><a href="#">link 1</a></li>
+              <li><a href="#">link 2</a></li>
+              <li><a href="#">link 3</a></li>
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+		
+		 <div class="sidebar">
+			<h3>Pending Plans</h3>
+			<div class="sidebar_item">
+				<ul>
+					<li><a href="#">link 1</a></li>
+					<li><a href="#">link 2</a></li>
+					<li><a href="#">link 3</a></li>
+				</ul>
+			</div>
+			<div class="sidebar_base"></div>
+		</div>
+		
+		 <div class="sidebar">
+			<h3>Paused Plans</h3>
+			<div class="sidebar_item">
+				<ul>
+					<li><a href="#">link 1</a></li>
+					<li><a href="#">link 2</a></li>
+					<li><a href="#">link 3</a></li>
+				</ul>
+			</div>
+			<div class="sidebar_base"></div>
+		</div>
+		
+     </div>
+      <div class="content">
+	  
+			<!-- <h1>Bar Chart</h1> -->
+		
+			<div class="content_item">
+			
+			<!-- Insert Chart here -->
+					
+				<h2>Distribution of Automation Plans</h2>
+				
+				<div id="graphDiv1"></div>
+				<br />
+				<div id="graphDiv2"></div>
+				<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+				<script src="html5-canvas-bar-graph.js"></script>
+				<script>
+					(function () {	
+						function createCanvas(divName) {
+							
+							var div = document.getElementById(divName);
+							var canvas = document.createElement('canvas');
+							div.appendChild(canvas);
+							
+							if (typeof G_vmlCanvasManager != 'undefined') {
+								canvas = G_vmlCanvasManager.initElement(canvas);
+							}	
+							var ctx = canvas.getContext("2d");
+							return ctx;
+						}
+						
+						var ctx = createCanvas("graphDiv1");
+						
+						var graph = new BarGraph(ctx);
+						graph.maxValue = 30;
+						graph.margin = 2;
+						graph.colors = ["#49a0d8", "#d353a0", "#ffc527", "#df4c27"];
+						graph.xAxisLabelArr = ["New", "Running", "Failed", "Completed"];
+						setInterval(function () {
+							graph.update([Math.random() * 30, Math.random() * 30, Math.random() * 30, Math.random() * 30]);
+						}, 1000);
+						
+						var ctx2 = createCanvas("graphDiv2");
+						
+						var graph2 = new BarGraph(ctx2);
+						graph2.margin = 2;
+						graph2.width = 550;
+						graph2.height = 150;
+						graph2.xAxisLabelArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
+						setInterval(function () {
+							graph2.update([Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20, Math.random() * 20]);
+						}, 1500);
+					}());
+				</script>
+				
+			<!--End chart insertion here -->
+				
+			</div>
+		</div> 
+      <div class="content">
+        <h1>Report Summary</h1>
+        <div class="content_item">
+          <p>The following observations were made:</p>
+          <ul>
+            <li>Network Trafic</li>
+            <li>Number of downloads</li>
+            <li>Task Duration</li>
+            <li>Endpoint Availability</li>
+            <li>Protocol</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p><a href="index.html">About</a> | <a href="tasklist.html">Task List</a> | <a href="barchart.html">Bar Chart</a> | <a href="piechart.html">Pie Chart</a> | <a href="contact.php">Contact Us</a></p>
+      <p>Copyright &copy; IBM Endpoint Manager | <a href="http://www.ibm.com">Managing your applications on the cloud!</a></p>
+    </footer>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+</body>
+</html>

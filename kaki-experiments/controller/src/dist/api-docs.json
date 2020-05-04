@@ -1,0 +1,82 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "controller API",
+    "description": "Spec for controller api",
+
+  },
+  "basePath": "/",
+  "tags" : [
+    {"name": "series.fin",
+      "description": "financial time series"
+    }
+  ],
+  "schemes": [
+    "http"
+    , "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/series/fin/{ticker}": {
+      "get":{
+        "tags": [ "series.fin"],
+        "description": "loads ticker values into consumers",
+        "operationId": "getTicker",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "path",
+            "description": "The ticker in format EX:STOCK",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+          , "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ErrorResponse": {
+      "properties": {
+        "message": {
+          "required": true,
+          "type" : "string"
+        }
+      }
+    },
+    "SuccessResponse": {
+      "properties": {
+        "ok": {
+          "required": true,
+          "type" : "boolean"
+        },
+        "result" : {
+          "required": true,
+          "type": "object"
+        }
+      }
+    }
+  }
+}

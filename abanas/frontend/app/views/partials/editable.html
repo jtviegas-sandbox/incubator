@@ -1,0 +1,55 @@
+<form name="editorForm" novalidate>
+	<div ng-hide="editor.showing">
+	<!-- need to ensure that we cater to both single-line and 
+	multi-line field types; hence, we're using 
+	ng-bind-html and our paragraph filter -->
+		<span ng-bind-html="value | paragraph"></span> 
+		<button class="btn btn-default btn-xs" ng-click="toggleEditor()">Edit</button>
+	</div>
+	<div ng-show="editor.showing">
+
+		<div ng-if="field == 'textarea'">
+			<div ng-if="isRequired == 'true'">
+				<textarea name="field" ng-model="editor.value" class="form-control" ng-maxlength="ngMaxlength" ng-minlength="ngMinlength" required></textarea>
+			</div>
+			<div ng-if="isRequired != 'true'">
+				<textarea name="field" ng-model="editor.value" class="form-control" ng-maxlength="ngMaxlength" ng-minlength="ngMinlength"></textarea>
+			</div>
+		</div>
+
+		<div ng-if="field == 'select'">
+			<div ng-if="isRequired == 'true'">
+				<select name="field" class="form-control" ng-model="editor.value" required>
+		          <option ng-repeat="strat in editor.strategyTypes">{{strat}}</option>
+		        </select>
+			</div>
+			<div ng-if="isRequired != 'true'">
+				<select name="field" class="form-control" ng-model="editor.value">
+		          <option ng-repeat="strat in editor.strategyTypes">{{strat}}</option>
+		        </select>
+			</div>
+		</div>
+
+		<div ng-if="field == 'number'">
+			<div ng-if="isRequired == 'true'">
+				<input name="field" type="{{field}}" ng-model="editor.value" ng-max="ngMax" ng-min="ngMin" class="form-control" required>
+			</div>
+			<div ng-if="isRequired != 'true'">
+				<input name="field" type="{{field}}" ng-model="editor.value" ng-max="ngMax" ng-min="ngMin" class="form-control">
+			</div>
+		</div>
+
+		<div ng-if="field != 'textarea' && field != 'select' && field != 'number'">
+			<div ng-if="isRequired == 'true'">
+				<input name="field" type="{{field}}" ng-model="editor.value" ng-maxlength="ngMaxlength" ng-minlength="ngMinlength" class="form-control" required>
+			</div>
+			<div ng-if="isRequired != 'true'">
+				<input name="field" type="{{field}}" ng-model="editor.value" ng-maxlength="ngMaxlength" ng-minlength="ngMinlength" class="form-control">
+			</div>
+		</div>
+		<hr>
+
+		<button class="btn btn-success btn-xs" ng-click="save()" ng-disabled="editorForm.field.$invalid">Save</button>
+		<button class="btn btn-default btn-xs" ng-click="toggleEditor()">Cancel</button>
+	</div>
+</form>

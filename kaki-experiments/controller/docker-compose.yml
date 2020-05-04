@@ -1,0 +1,21 @@
+version: '2'
+services:
+  controller:
+    image: "kaki-controller:0.0.1"
+    ports:
+      - "3000:3000"
+    links:
+      - zookeeper
+      - kafka
+  kafka:
+    image: "kaki-kafka:0.0.1"
+    ports:
+      - "9092:9092"
+    links:
+      - zookeeper
+  zookeeper:
+    image: "kaki-zookeeper:0.0.1"
+    ports:
+      - "2181:2181"
+      - "2888:2888"
+      - "3888:3888"

@@ -1,0 +1,25 @@
+sudo apt-get build-dep tesseract-ocr
+sudo apt-get install devscripts
+dget http://http.debian.net/debian/pool/main/t/tesseract/tesseract_3.03.03-1.dsc
+tar xvzf tesseract_3.03.03.orig.tar.gz
+cd tesseract-3.03
+zcat ../tesseract_3.03.03-1.diff.gz | patch -p1
+debuild -us -uc
+cd ..
+sudo dpkg -i *.deb
+
+Try to set these variables (put them in a config file) to false:
+
+load_system_dawg 
+load_freq_dawg
+load_punc_dawg
+load_number_dawg
+load_unambig_dawg
+load_bigram_dawg
+load_fixed_length_dawgs
+
+sudo apt-get install imagemagick
+
+convert image.jpg -threshold 73% image_bin.jpg
+tesseract image_bin.jpg out -psm 12 && cat out.txt
+

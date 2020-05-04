@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>IEM</title>
+			<meta name="description" content="website description" />
+			<meta name="keywords" content="website keywords, website keywords" />
+			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<!-- modernizr enables HTML5 elements and feature detects -->
+		<script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+	</head>
+
+	<body onLoad="init()">
+
+	<div id="main">
+		
+		<header>
+		  <div id="logo">
+			<div id="logo_text">
+			  <!-- class="logo_colour", allows you to change the colour of the text -->
+			  <h1><a href="index.html">IBM<span class="logo_colour">Endpoint Manager</span></a></h1>
+			  <h2>Automation Plan Action Analyser</h2>
+			</div>
+			<form method="post" action="#" id="search">
+			  <input class="search" type="text" name="search_field" value="search....." onclick="javascript: document.forms['search'].search_field.value=''" />
+			  <input name="search" type="image" style="float: right;border: 0; margin: 20px 0 0 0;" src="images/search.png" alt="search" title="search" />
+			</form>
+		  </div>
+		  <nav>
+			<ul class="sf-menu" id="nav">
+			  <li><a href="index.html">About</a></li>
+			  <li><a href="tasklist.html">Task List</a></li>
+			  <li><a href="barchart.html">Bar Chart</a></li>
+			  <li><a href="piechart.html">Pie Chart</a></li>
+			  <li class="current"><a href="linechart.html">Line Chart</a>
+			  <li><a href="contact.php">Contact Us</a></li>
+			</ul>
+		  </nav>
+		</header>
+		
+		<div id="site_content">
+			<div id="sidebar_container">
+				<div class="sidebar">
+				  <h3>Failed Plans</h3>
+							<div class="sidebar_item">
+							<ul>
+							  <li><a href="#">link 1</a></li>
+							  <li><a href="#">link 2</a></li>
+							  <li><a href="#">link 3</a></li>
+							</ul>
+						 </div>
+					<div class="sidebar_base"></div>
+				</div>
+				
+				<div class="sidebar">
+				  <h3>Running Plans</h3>
+				  <div class="sidebar_item">
+					<ul>
+					  <li><a href="#">link 1</a></li>
+					  <li><a href="#">link 2</a></li>
+					  <li><a href="#">link 3</a></li>
+					</ul>
+				  </div>
+				  <div class="sidebar_base"></div>
+				</div>
+				
+				<div class="sidebar">
+				  <h3>Completed Plans</h3>
+				  <div class="sidebar_item">
+					<ul>
+					  <li><a href="#">link 1</a></li>
+					  <li><a href="#">link 2</a></li>
+					  <li><a href="#">link 3</a></li>
+					</ul>
+				  </div>
+				  <div class="sidebar_base"></div>
+				</div>
+				
+				 <div class="sidebar">
+					<h3>Pending Plans</h3>
+					<div class="sidebar_item">
+						<ul>
+							<li><a href="#">link 1</a></li>
+							<li><a href="#">link 2</a></li>
+							<li><a href="#">link 3</a></li>
+						</ul>
+					</div>
+					<div class="sidebar_base"></div>
+				</div>
+				
+				 <div class="sidebar">
+					<h3>Paused Plans</h3>
+					<div class="sidebar_item">
+						<ul>
+							<li><a href="#">link 1</a></li>
+							<li><a href="#">link 2</a></li>
+							<li><a href="#">link 3</a></li>
+						</ul>
+					</div>
+					<div class="sidebar_base"></div>
+				</div>
+				
+			</div>
+		  <div class="content" style="padding-bottom: 80px;">
+			
+			<!-- <h1>Line Chart</h1> -->
+			
+			  <div class="content_item" id="chartContainer" style="height: 350px; width: 300%; padding-bottom: 2px;">
+			  
+			<!-- Insert chart here -->
+
+				<div align="left">
+				
+					<h2>Standard deviation & Mean Values</h2> 
+
+						<canvas id="canvas" height="350" width="450"></canvas>
+					</br> 
+						<!--Legends for Dataplot -->
+					<span style="color:#FF0066">Failed Plans</span>  
+					<span style="color:#9933FF">Running Plans</span>  
+					<span style="color:#000">Completed Plans</span>
+				</div>
+	 
+			   <style>html{font-family:Verdana;}</style>
+			
+				<script type="text/javascript">
+
+					var canvas ;
+					var context ;
+					var Val_max;
+					var Val_min;
+					var sections;
+					var xScale;
+					var yScale;
+							// Values for the Data Plot, they can also be obtained from a external file
+					var Apple =  [100, 102, 87, , 100, 123, 100, 90, 87, 91, 93, 88];
+					var Samsung = [30, 50, 70, 80, 90, 100, 95, 91, 85, 92, 99, 130];
+					var Nokia =   [20, -10, -20, -25, -40, 5, 10, 28, 30, 43, 65, 80];
+
+					function init() {
+						// set these values for your data 
+						sections = 12;
+						Val_max = 130;
+						Val_min = -40;
+						var stepSize = 10;
+						var columnSize = 50;
+						var rowSize = 50;
+						var margin = 10;
+						var xAxis = [" ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] 
+							//
+							
+						canvas = document.getElementById("canvas");
+						context = canvas.getContext("2d");
+						context.fillStyle = "#0099ff"
+						context.font = "20 pt Verdana"
+						
+						yScale = (canvas.height - columnSize - margin) / (Val_max - Val_min);
+						xScale = (canvas.width - rowSize) / sections;
+						
+						context.strokeStyle="#009933"; // color of grid lines
+						context.beginPath();
+							// print Parameters on X axis, and grid lines on the graph
+						for (i = 1; i <= sections; i++) {
+							var x = i * xScale;
+							context.fillText(xAxis[i], x,columnSize - margin);
+							context.moveTo(x, columnSize);
+							context.lineTo(x, canvas.height - margin);
+						}
+						// print row header and draw horizontal grid lines
+						var count =  0;
+						for (scale = Val_max; scale >= Val_min; scale = scale - stepSize) {
+							var y = columnSize + (yScale * count * stepSize); 
+							context.fillText(scale, margin,y + margin);
+							context.moveTo(rowSize,y)
+							context.lineTo(canvas.width,y)
+							count++;
+						}
+						context.stroke();
+						
+						context.translate(rowSize,canvas.height + Val_min * yScale);
+						context.scale(1, -1 * yScale);
+						 
+						// Color of each dataplot items
+						context.strokeStyle="#FF0066";
+						plotData(Apple);
+						context.strokeStyle="#9933FF";
+						plotData(Samsung);
+						context.strokeStyle="#000";
+						plotData(Nokia);
+					}
+
+					function plotData(dataSet) {
+						context.beginPath();
+						context.moveTo(0, dataSet[0]);
+						for (i = 1; i < sections; i++) {
+							context.lineTo(i * xScale, dataSet[i]);
+						}
+						context.stroke();
+					}
+				</script>
+				
+				
+				<!-- End chart insertion here -->
+				
+				</div>
+			</div>
+		  
+		  <div class="content">
+			<h1>Report Summary</h1>
+			<div class="content_item">
+			  <p>The following observations were made:</p>
+			  <ul>
+				<li>Network Trafic</li>
+				<li>Number of downloads</li>
+				<li>Task Duration</li>
+				<li>Endpoint Availability</li>
+				<li>Protocol</li>
+			  </ul>
+			</div>
+		  </div>
+		</div>
+		
+		<footer>
+		  <p><a href="index.html">About</a> | <a href="tasklist.html">Task List</a> | <a href="barchart.html">Bar Chart</a> | <a href="piechart.html">Pie Chart</a> | <a href="contact.php">Contact Us</a></p>
+		  <p>Copyright &copy; IBM Endpoint Manager | <a href="http://www.ibm.com">Managing your applications on the cloud!</a></p>
+		</footer>
+		
+	</div>
+	
+		<!-- javascript at the bottom for fast page loading -->
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+		<script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+			
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('ul.sf-menu').sooperfish();
+			});
+		</script>
+	</body>
+</html>

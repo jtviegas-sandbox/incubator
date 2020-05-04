@@ -1,0 +1,32 @@
+<div class="page-header">
+<h1>all assets & strategies</h1>
+</div>
+<div class="table-responsive">
+  <table class="table">
+  <thead>
+    <tr>
+    <th>id</th>
+    <th>strategy</th>
+    <th>ticker</th>
+    <th>initial value</th>
+    <th>start date</th>
+    </tr>
+  </thead>
+  <tbody class="table-striped">
+    <tr ng-repeat="data in strategies">
+      <td>{{data._id}}</td>
+      <td>{{data.strategy}}</td>
+      <td>{{data.ticker}}</td>
+      <td>{{data.initialValue}}</td>
+      <td>{{data.startDate}}</td>
+      <td><button ng-click="remove(data._id)" class="btn btn-danger btn-xs">delete</button></td>
+      <td><a href="/strategy/{{data._id}}" class="btn btn-default btn-xs">view</a></td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+<div>
+  <a href="/strategy/add" class="btn btn-primary btn-lg active" role="button">add new strategy</a>
+</div>
+<div id="alertContainer"></div>
+

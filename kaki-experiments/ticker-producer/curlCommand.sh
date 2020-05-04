@@ -1,0 +1,1 @@
+curl -H "Content-Type: application/json" -X POST -d '{"symbol":"BAE","exchange":"LON"}' http://localhost:3000/api/googlefinance

@@ -1,0 +1,68 @@
+/** Begin reset */
+
+* {
+	margin: 0;
+	padding: 5px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* Default styles first then media queries */
+
+img, video, canvas {
+  max-width: 100%;
+}
+
+
+
+
+h1,h2,h3,h4,h5,h6,p {
+	margin-bottom: 10px;
+}
+
+ol,ul,dl {
+	list-style-position: inside;
+}
+/** End reset */
+
+/** Begin standard selectors */
+body {
+	font: 13px 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif;
+	color: white;
+	background-color: black;
+
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:link,a:visited {
+	color: inherit;
+}
+
+a:hover {
+	//text-decoration: underline;
+}
+
+strong {
+	font-weight: 800;
+	color: #000;
+}
+
+label {
+	width: 100px;
+	float: left;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	display: inline;
+}
+
+label:after {
+	content: ': ';
+}
+/** End standard selectors */
+

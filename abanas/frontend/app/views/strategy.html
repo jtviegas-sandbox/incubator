@@ -1,0 +1,42 @@
+<div class="page-header row">
+<h1>strategy</h1>
+</div>
+
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="id" class="col-sm-6 control-label">id</label>
+            <div id="id" class="col-sm-6">{{strategy._id}}</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+           <div class="form-group">
+            <label for="ticker" class="col-sm-6 control-label">ticker</label>
+            <p id="ticker" class="col-sm-6 form-control-static" editable="strategy.ticker" field-type="text" ng-maxlength="6" ng-minlength="3" is-required="true"></p>
+          </div>
+        </div>
+      </div>  
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="initialValue" class="col-sm-6 control-label">initial value</label>
+            <p id="initialValue" class="col-sm-6 form-control-static" editable="strategy.initialValue" field-type="number" ng-max="999999" ng-min="1" is-required="true"></p>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="strategy" class="col-sm-6 control-label">strategy</label>
+            <p id="strategy" class="col-sm-6 form-control-static" editable="strategy.strategy" field-type="select" is-required="true"></p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="startDate" class="col-sm-6 control-label">start date</label>
+            <p id="startDate" class="col-sm-6 form-control-static" editable="strategy.startDate" field-type="date" ng-maxlength="10" ng-minlength="10" is-required="true"></p>
+          </div>
+        </div>
+      </div>
+

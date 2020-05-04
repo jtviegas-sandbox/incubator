@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1>add strategy</h1>
+</div>
+
+<form name="strategyAdd" novalidate ng-submit="submit()">
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group" ng-class="{'has-error': formErrors && !strategyAdd.strategy.$valid}">
+        <label for="strategy" class="col-sm-4 control-label">strategy</label>
+        <select name="strategy" class="col-sm-8 form-control" id="strategy" ng-model='strategy.strategy' required>
+          <option ng-repeat="strategyType in strategyTypes">{{strategyType}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group" ng-class="{'has-error': formErrors && !strategyAdd.ticker.$valid}">
+        <label for="ticker" class="col-sm-4 control-label">ticker</label>
+        <input name="ticker" id="ticker" type="text" class="form-control" placeholder="provide a valid ticker..." ng-model='strategy.ticker' required ng-minlength="3" ng-maxlength="6">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group" ng-class="{'has-error': formErrors && !strategyAdd.initialValue.$valid}">
+        <label for="initialValue" class="col-sm-4 control-label">initial value</label>
+        <input name="initialValue" id="initialValue" type="number" class="form-control" placeholder="...an initial value to invest..." ng-model='strategy.initialValue' required ng-pattern="/^[0-9]/" ng-min="1" ng-max="999999">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group" ng-class="{'has-error': formErrors && !strategyAdd.startDate.$valid}">
+        <label for="startDate" class="col-sm-4 control-label">start date</label>
+        <input name="startDate" id="startDate" type="date" bs-tooltip="tooltipStartDate" class="form-control" ng-model='strategy.startDate' required validatedateformat maxlength="10">
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 ">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="submit" class="btn btn-primary" value="submit" >
+          <!-- ng-disabled="strategyAdd.$invalid" -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 ">
+      <div id="alertContainer"></div>
+    </div>
+  </div>
+</form>
